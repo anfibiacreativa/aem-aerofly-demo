@@ -1,0 +1,55 @@
+/*
+ * Aerofly — AEM Edge Delivery Services Styles
+ * Design tokens imported from the shared token system
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Brand Colors */
+  --af-color-brand-primary: #0A1628;
+  --af-color-brand-secondary: #1B2D4A;
+  --af-color-brand-accent: #FF4F3E;
+  --af-color-brand-accent-hover: #E63E2E;
+  --af-color-brand-warm: #F5E6D3;
+  --af-color-brand-warm-light: #FDF8F3;
+
+  /* Neutral Colors */
+  --af-color-neutral-900: #0F172A;
+  --af-color-neutral-700: #334155;
+  --af-color-neutral-400: #94A3B8;
+  --af-color-neutral-200: #E2E8F0;
+  --af-color-neutral-100: #F1F5F9;
+
+  /* Typography */
+  --af-font-family-heading: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --af-font-family-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing */
+  --af-spacing-4: 16px;
+  --af-spacing-6: 24px;
+  --af-spacing-8: 32px;
+  --af-spacing-12: 48px;
+  --af-spacing-16: 64px;
+}
+
+body {
+  font-family: var(--af-font-family-body);
+  color: var(--af-color-neutral-900);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--af-font-family-heading);
+  font-weight: 700;
+}
+
+a {
+  color: var(--af-color-brand-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--af-color-brand-accent-hover);
+}
