@@ -1,0 +1,175 @@
+{
+  "lastUpdated": "2026-02-09T18:00:00Z",
+  "trending": [
+    {
+      "id": "trend-001",
+      "topic": "Sustainable Running",
+      "category": "sustainability",
+      "momentum": "rising",
+      "score": 94,
+      "summary": "Consumer demand for eco-friendly athletic footwear has surged 340% since 2024. Recycled materials and carbon-neutral manufacturing are now table stakes for premium brands.",
+      "signals": [
+        { "source": "Google Trends", "metric": "Search volume +180% YoY for 'sustainable running shoes'" },
+        { "source": "TikTok", "metric": "#EcoRun has 4.7B views, up 120% this month" },
+        { "source": "Reddit r/running", "metric": "3 of top 10 posts this week mention sustainability" }
+      ],
+      "contentAngles": [
+        "Lead with recycled material percentage in hero messaging",
+        "Highlight carbon footprint reduction metrics",
+        "Feature athlete testimonials about sustainable gear choices",
+        "Use earthy/natural imagery alongside product shots"
+      ],
+      "relevantProducts": ["AirPulse Max", "CloudStride"],
+      "tags": ["sustainability", "eco-friendly", "recycled", "carbon-neutral"]
+    },
+    {
+      "id": "trend-002",
+      "topic": "Trail Running Boom",
+      "category": "sports",
+      "momentum": "surging",
+      "score": 91,
+      "summary": "Trail running participation has doubled since 2024, driven by post-pandemic outdoor activity preferences. Ultra-marathon registrations are up 65% YoY. Trail shoe segment growing 3x faster than road.",
+      "signals": [
+        { "source": "Strava", "metric": "Trail run activities up 89% globally in January 2026" },
+        { "source": "Instagram", "metric": "#TrailRunning posts hit 28M, growth rate accelerating" },
+        { "source": "Race registrations", "metric": "UTMB 2026 sold out in 11 minutes (previous record: 43 min)" }
+      ],
+      "contentAngles": [
+        "Position trail shoes as gateway to adventure, not just performance",
+        "Feature dramatic trail photography and user-generated content",
+        "Emphasize grip and durability over speed metrics",
+        "Partner content with trail running events or athletes"
+      ],
+      "relevantProducts": ["TrailForge Pro"],
+      "tags": ["trail", "outdoor", "adventure", "ultra"]
+    },
+    {
+      "id": "trend-003",
+      "topic": "AI-Personalized Fit",
+      "category": "technology",
+      "momentum": "emerging",
+      "score": 78,
+      "summary": "Consumers increasingly expect AI-driven size recommendations and personalized fit. Brands offering virtual try-on and gait analysis see 40% fewer returns.",
+      "signals": [
+        { "source": "TechCrunch", "metric": "3 major footwear brands launched AI fit tools in Q1 2026" },
+        { "source": "Consumer survey", "metric": "67% of Gen Z buyers want personalized fit recommendations" },
+        { "source": "Returns data", "metric": "AI-sized orders have 40% lower return rate industry-wide" }
+      ],
+      "contentAngles": [
+        "Highlight SmartFit technology in product descriptions",
+        "Feature the fit personalization experience in landing page flow",
+        "Use data/stats about fit accuracy as social proof",
+        "Position as technology-forward brand"
+      ],
+      "relevantProducts": ["AirPulse Max", "CloudStride", "TrailForge Pro"],
+      "tags": ["AI", "personalization", "fit", "technology", "innovation"]
+    },
+    {
+      "id": "trend-004",
+      "topic": "Running as Mental Health",
+      "category": "wellness",
+      "momentum": "stable-high",
+      "score": 87,
+      "summary": "The narrative around running has shifted from pure performance to mental wellness. 'Running for mental health' content outperforms 'running for fitness' across all platforms.",
+      "signals": [
+        { "source": "YouTube", "metric": "'Running and mental health' videos avg 2.3M views (up 200%)" },
+        { "source": "Pinterest", "metric": "Mindful running boards saved 5x more than marathon training" },
+        { "source": "Twitter/X", "metric": "#RunForYourMind trending 4 times in January" }
+      ],
+      "contentAngles": [
+        "Lead with emotional benefit ('Find your calm') over performance ('Run faster')",
+        "Use softer, contemplative imagery alongside action shots",
+        "Feature diverse runners with personal wellness stories",
+        "Position shoes as partner in wellbeing journey, not just competition"
+      ],
+      "relevantProducts": ["CloudStride"],
+      "tags": ["mental-health", "wellness", "mindfulness", "self-care"]
+    },
+    {
+      "id": "trend-005",
+      "topic": "Marathon Majors Hype",
+      "category": "sports",
+      "momentum": "peaking",
+      "score": 96,
+      "summary": "Tokyo Marathon just completed with a world record. Berlin and Chicago spots sold out instantly. Marathon content is generating unprecedented engagement across all demographics.",
+      "signals": [
+        { "source": "Global media", "metric": "Tokyo Marathon world record dominated headlines for 3 days" },
+        { "source": "Strava", "metric": "Marathon training plan starts up 150% in February" },
+        { "source": "YouTube", "metric": "Marathon race day vlogs averaging 5M+ views" }
+      ],
+      "contentAngles": [
+        "Reference the world record moment in hero copy",
+        "Feature carbon-plated racing technology prominently",
+        "Create urgency around marathon season preparation",
+        "Use dynamic, high-energy race photography"
+      ],
+      "relevantProducts": ["AirPulse Max"],
+      "tags": ["marathon", "racing", "world-record", "performance", "carbon-plate"]
+    }
+  ],
+  "viralContent": [
+    {
+      "id": "viral-001",
+      "title": "7 Continents in 7 Days Challenge",
+      "platform": "TikTok",
+      "views": "847M",
+      "summary": "Ultra-runner Kai Mercer completed marathons on all 7 continents in 7 days, documenting each on TikTok. Multiple shoe brands mentioned but trail footwear dominated the conversation.",
+      "relevance": "Trail running, endurance, adventure narrative. Strong alignment with TrailForge positioning.",
+      "sentiment": "overwhelmingly positive",
+      "contentOpportunity": "Congratulatory post, adventure-themed content, 'built for the impossible' messaging"
+    },
+    {
+      "id": "viral-002",
+      "title": "CEO Runs to Work Every Day for a Year",
+      "platform": "LinkedIn",
+      "views": "12M",
+      "summary": "A tech CEO's post about running to work every day for a year went viral. Sparked conversations about running as productivity tool and work-life integration.",
+      "relevance": "Everyday running, commute culture, professional runners. Aligns with CloudStride 'everyday' positioning.",
+      "sentiment": "positive with debate",
+      "contentOpportunity": "Feature 'from run to meeting' lifestyle content, everyday versatility messaging"
+    },
+    {
+      "id": "viral-003",
+      "title": "Grandma Sets 90+ Age Group Record",
+      "platform": "Instagram/Reddit",
+      "views": "234M",
+      "summary": "91-year-old Margaret Liu set a new 5K age-group world record. Post went viral across all platforms with 'it's never too late' narrative.",
+      "relevance": "Inclusivity, age diversity, inspiration. Reinforces 'running is for everyone' brand positioning.",
+      "sentiment": "universally positive",
+      "contentOpportunity": "Inclusive messaging, diverse athlete representation, 'every runner' campaign angle"
+    }
+  ],
+  "competitorMoves": [
+    {
+      "brand": "Nike",
+      "action": "Launched 'Nike Circular' — a fully recyclable running shoe made from single-material construction",
+      "date": "2026-02-03",
+      "impact": "High — sets new bar for sustainability. Aerofly should emphasize recycled material percentage and lifecycle metrics.",
+      "recommendedResponse": "Don't compete on single-material narrative. Instead, lead with '98% recycled from day one' and total lifecycle carbon metrics."
+    },
+    {
+      "brand": "On Running",
+      "action": "Opened 50 new retail locations in Asia-Pacific, focusing on trail running experience stores",
+      "date": "2026-01-28",
+      "impact": "Medium — expanding trail running market presence. Validates trail running growth trend.",
+      "recommendedResponse": "Lean into digital-first strategy. Trail content and community building over physical retail."
+    },
+    {
+      "brand": "Hoka",
+      "action": "Released AI-powered gait analysis app integrated with shoe recommendations",
+      "date": "2026-02-05",
+      "impact": "Medium-high — first mover in AI personalization for running shoes.",
+      "recommendedResponse": "Accelerate SmartFit rollout. Feature AI/personalization angle in upcoming campaigns."
+    }
+  ],
+  "seasonalContext": {
+    "currentSeason": "Early Spring 2026",
+    "upcomingEvents": [
+      { "event": "Boston Marathon", "date": "2026-04-20", "leadTime": "10 weeks", "relevance": "Marathon training content, carbon-plate messaging" },
+      { "event": "Earth Day", "date": "2026-04-22", "leadTime": "10 weeks", "relevance": "Sustainability campaign moment, recycled materials push" },
+      { "event": "Global Running Day", "date": "2026-06-03", "leadTime": "16 weeks", "relevance": "Community celebration, inclusive running messaging" },
+      { "event": "Summer Training Season", "date": "2026-06-01", "leadTime": "16 weeks", "relevance": "Hot weather gear, hydration, CloudStride breathability" }
+    ],
+    "weatherInsight": "Northern hemisphere entering running season. Training plan searches peak in Feb-March. Opportunity to capture intent with 'start your spring' messaging."
+  }
+}
