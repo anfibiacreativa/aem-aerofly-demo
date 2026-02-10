@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--af-font-family-body);
+  font-size: var(--af-font-size-body-md);
+  font-weight: var(--af-font-weight-regular);
+  line-height: var(--af-line-height-normal);
+  color: var(--af-color-neutral-900);
+  background-color: var(--af-color-surface-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--af-color-brand-accent);
+  text-decoration: none;
+  transition: color var(--af-duration-fast) var(--af-easing-default);
+}
+
+a:hover {
+  color: var(--af-color-brand-accent-hover);
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
