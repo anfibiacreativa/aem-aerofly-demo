@@ -1,0 +1,20 @@
+{
+  "name": "aem-aerofly-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aerofly — Fictional athletic footwear brand for AEM Experience Catalyst Summit demo",
+  "workspaces": [
+    "storybook",
+    "mcp-servers/*"
+  ],
+  "scripts": {
+    "storybook": "npm run storybook --workspace=storybook",
+    "build-storybook": "npm run build-storybook --workspace=storybook",
+    "mcp:storybook": "npm run start --workspace=mcp-servers/storybook-mcp",
+    "mcp:tokens": "npm run start --workspace=mcp-servers/design-tokens-mcp",
+    "mcp:nerve-center": "npm run start --workspace=mcp-servers/nerve-center-mcp"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}
