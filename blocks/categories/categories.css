@@ -1,0 +1,93 @@
+.categories {
+  padding: var(--af-spacing-16) var(--af-spacing-6);
+}
+
+.af-categories__header {
+  text-align: center;
+  margin-bottom: var(--af-spacing-8);
+}
+
+.af-categories__heading {
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-heading-xl);
+  font-weight: var(--af-font-weight-bold);
+  color: var(--af-color-brand-primary);
+  margin: 0;
+  letter-spacing: var(--af-letter-spacing-tight);
+}
+
+.af-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--af-spacing-4);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.af-categories__tile {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--af-radius-lg);
+  overflow: hidden;
+  transition: transform var(--af-duration-normal) var(--af-easing-default),
+    box-shadow var(--af-duration-normal) var(--af-easing-default);
+}
+
+.af-categories__tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--af-shadow-lg);
+}
+
+.af-categories__image-wrapper {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--af-color-neutral-100);
+}
+
+.af-categories__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--af-duration-normal) var(--af-easing-default);
+}
+
+.af-categories__tile:hover .af-categories__image {
+  transform: scale(1.05);
+}
+
+.af-categories__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 22, 40, 0.85) 0%, rgba(10, 22, 40, 0.2) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.af-categories__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--af-spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-spacing-1);
+}
+
+.af-categories__name {
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-heading-sm);
+  font-weight: var(--af-font-weight-semibold);
+  color: white;
+  letter-spacing: var(--af-letter-spacing-tight);
+}
+
+.af-categories__count {
+  font-size: var(--af-font-size-body-sm);
+  color: var(--af-color-neutral-300);
+}
+
+@media (max-width: 768px) {
+  .af-categories__grid { grid-template-columns: 1fr; }
+}

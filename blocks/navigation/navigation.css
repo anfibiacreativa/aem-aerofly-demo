@@ -1,0 +1,93 @@
+.navigation {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: var(--af-spacing-3) var(--af-spacing-6);
+  background-color: var(--af-color-brand-primary);
+  box-shadow: var(--af-shadow-sm);
+}
+
+.af-nav__inner {
+  max-width: 1536px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--af-spacing-8);
+}
+
+.af-nav__logo {
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-body-lg);
+  font-weight: var(--af-font-weight-bold);
+  letter-spacing: var(--af-letter-spacing-wider);
+  text-decoration: none;
+  color: white;
+  transition: color var(--af-duration-fast) var(--af-easing-default);
+}
+
+.af-nav__logo:hover {
+  color: var(--af-color-brand-accent);
+}
+
+.af-nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--af-spacing-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.af-nav__link {
+  font-size: var(--af-font-size-body-sm);
+  font-weight: var(--af-font-weight-medium);
+  letter-spacing: var(--af-letter-spacing-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  padding: var(--af-spacing-2) 0;
+  transition: color var(--af-duration-fast) var(--af-easing-default);
+}
+
+.af-nav__link:hover {
+  color: var(--af-color-brand-accent);
+}
+
+.af-nav__utils {
+  display: flex;
+  align-items: center;
+  gap: var(--af-spacing-4);
+}
+
+.af-nav__icon-btn,
+.af-nav__cart-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: var(--af-radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--af-duration-fast) var(--af-easing-default);
+}
+
+.af-nav__icon-btn:hover,
+.af-nav__cart-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.af-nav__icon {
+  font-size: var(--af-font-size-body-md);
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .af-nav__links { display: none; }
+  .navigation { padding: var(--af-spacing-3) var(--af-spacing-4); }
+}

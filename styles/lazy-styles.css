@@ -1,0 +1,7 @@
+/*
+ * Aerofly — Lazy-loaded styles (below the fold).
+ * Loaded after LCP for non-critical CSS.
+ */
+
+/* Google Fonts — loaded lazily to avoid render-blocking */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

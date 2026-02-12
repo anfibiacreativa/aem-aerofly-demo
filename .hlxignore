@@ -1,0 +1,16 @@
+storybook/
+mcp-servers/
+node_modules/
+eds-site/
+content/
+docs/
+.git/
+.vscode/
+.env
+*.log
+package.json
+package-lock.json
+tsconfig.json
+.eslintrc.js
+.prettierrc
+README.md

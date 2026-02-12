@@ -1,0 +1,236 @@
+/*
+ * Aerofly — Edge Delivery Services Global Styles
+ * Design tokens from the Aerofly token system
+ */
+
+:root {
+  /* Nav Height */
+  --nav-height: 64px;
+  /* Brand Colors */
+  --af-color-brand-primary: #0A1628;
+  --af-color-brand-secondary: #1B2D4A;
+  --af-color-brand-accent: #FF4F3E;
+  --af-color-brand-accent-hover: #E63E2E;
+  --af-color-brand-warm: #F5E6D3;
+  --af-color-brand-warm-light: #FDF8F3;
+
+  /* Neutral Colors */
+  --af-color-neutral-900: #0F172A;
+  --af-color-neutral-800: #1E293B;
+  --af-color-neutral-700: #334155;
+  --af-color-neutral-600: #475569;
+  --af-color-neutral-500: #64748B;
+  --af-color-neutral-400: #94A3B8;
+  --af-color-neutral-300: #CBD5E1;
+  --af-color-neutral-200: #E2E8F0;
+  --af-color-neutral-100: #F1F5F9;
+  --af-color-neutral-50: #F8FAFC;
+
+  /* Semantic Colors */
+  --af-color-success: #10B981;
+  --af-color-warning: #F59E0B;
+  --af-color-error: #EF4444;
+  --af-color-info: #3B82F6;
+
+  /* Surface Colors */
+  --af-color-surface-page: #FFFFFF;
+  --af-color-surface-elevated: #FFFFFF;
+  --af-color-surface-sunken: #F8FAFC;
+  --af-color-surface-overlay: rgba(10, 22, 40, 0.6);
+
+  /* Typography */
+  --af-font-family-heading: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --af-font-family-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --af-font-size-display-xl: 72px;
+  --af-font-size-display-lg: 56px;
+  --af-font-size-display-md: 48px;
+  --af-font-size-heading-xl: 36px;
+  --af-font-size-heading-lg: 30px;
+  --af-font-size-heading-md: 24px;
+  --af-font-size-heading-sm: 20px;
+  --af-font-size-body-lg: 18px;
+  --af-font-size-body-md: 16px;
+  --af-font-size-body-sm: 14px;
+  --af-font-size-caption: 12px;
+  --af-font-size-overline: 11px;
+
+  --af-font-weight-bold: 700;
+  --af-font-weight-semibold: 600;
+  --af-font-weight-medium: 500;
+  --af-font-weight-regular: 400;
+  --af-font-weight-light: 300;
+
+  --af-line-height-tight: 1.1;
+  --af-line-height-snug: 1.25;
+  --af-line-height-normal: 1.5;
+  --af-line-height-relaxed: 1.75;
+
+  --af-letter-spacing-tight: -0.02em;
+  --af-letter-spacing-normal: 0;
+  --af-letter-spacing-wide: 0.05em;
+  --af-letter-spacing-wider: 0.1em;
+
+  /* Spacing */
+  --af-spacing-0: 0px;
+  --af-spacing-1: 4px;
+  --af-spacing-2: 8px;
+  --af-spacing-3: 12px;
+  --af-spacing-4: 16px;
+  --af-spacing-5: 20px;
+  --af-spacing-6: 24px;
+  --af-spacing-8: 32px;
+  --af-spacing-10: 40px;
+  --af-spacing-12: 48px;
+  --af-spacing-16: 64px;
+  --af-spacing-20: 80px;
+  --af-spacing-24: 96px;
+
+  /* Border Radius */
+  --af-radius-none: 0px;
+  --af-radius-sm: 4px;
+  --af-radius-md: 8px;
+  --af-radius-lg: 12px;
+  --af-radius-xl: 16px;
+  --af-radius-full: 9999px;
+
+  /* Shadows */
+  --af-shadow-sm: 0 1px 2px rgba(10, 22, 40, 0.05);
+  --af-shadow-md: 0 4px 6px -1px rgba(10, 22, 40, 0.07), 0 2px 4px -2px rgba(10, 22, 40, 0.05);
+  --af-shadow-lg: 0 10px 15px -3px rgba(10, 22, 40, 0.08), 0 4px 6px -4px rgba(10, 22, 40, 0.05);
+  --af-shadow-xl: 0 20px 25px -5px rgba(10, 22, 40, 0.1), 0 8px 10px -6px rgba(10, 22, 40, 0.05);
+
+  /* Motion */
+  --af-duration-fast: 150ms;
+  --af-duration-normal: 250ms;
+  --af-duration-slow: 400ms;
+  --af-easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reset & Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: none;
+  margin: 0;
+  font-family: var(--af-font-family-body);
+  font-size: var(--af-font-size-body-md);
+  color: var(--af-color-neutral-900);
+  background: var(--af-color-surface-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: var(--af-line-height-normal);
+}
+
+body.appear {
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--af-font-family-heading);
+  font-weight: var(--af-font-weight-bold);
+  line-height: var(--af-line-height-tight);
+  letter-spacing: var(--af-letter-spacing-tight);
+  margin-top: 0;
+}
+
+h1 { font-size: var(--af-font-size-display-xl); }
+h2 { font-size: var(--af-font-size-heading-xl); }
+h3 { font-size: var(--af-font-size-heading-lg); }
+
+p { margin-top: 0; }
+
+a {
+  color: var(--af-color-brand-accent);
+  text-decoration: none;
+  transition: color var(--af-duration-fast) var(--af-easing-default);
+}
+
+a:hover {
+  color: var(--af-color-brand-accent-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─── EDS Structure ─── */
+header {
+  height: var(--nav-height);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .header,
+footer .footer {
+  visibility: hidden;
+}
+
+header .header[data-block-status="loaded"],
+footer .footer[data-block-status="loaded"] {
+  visibility: visible;
+}
+
+main {
+  min-height: 60vh;
+}
+
+main .section {
+  padding: 0;
+}
+
+main .section > .default-content-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--af-spacing-8) var(--af-spacing-6);
+}
+
+/* ─── Buttons ─── */
+a.button, button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--af-spacing-3) var(--af-spacing-6);
+  border-radius: var(--af-radius-md);
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-body-md);
+  font-weight: var(--af-font-weight-semibold);
+  text-decoration: none;
+  transition: all var(--af-duration-fast) var(--af-easing-default);
+  cursor: pointer;
+  border: none;
+}
+
+a.button.primary, button.button.primary {
+  background: var(--af-color-brand-accent);
+  color: white;
+}
+
+a.button.primary:hover, button.button.primary:hover {
+  background: var(--af-color-brand-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--af-shadow-lg);
+}
+
+a.button.secondary, button.button.secondary {
+  background: transparent;
+  color: var(--af-color-brand-primary);
+  border: 2px solid var(--af-color-brand-primary);
+}
+
+a.button.secondary:hover, button.button.secondary:hover {
+  background: var(--af-color-brand-primary);
+  color: white;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  h1 { font-size: var(--af-font-size-display-md); }
+  h2 { font-size: var(--af-font-size-heading-lg); }
+}

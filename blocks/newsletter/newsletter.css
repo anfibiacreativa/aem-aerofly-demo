@@ -1,0 +1,81 @@
+.newsletter {
+  padding: var(--af-spacing-12) var(--af-spacing-6);
+  background: var(--af-color-brand-warm);
+}
+
+.af-newsletter__inner {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.af-newsletter__heading {
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-heading-md);
+  font-weight: var(--af-font-weight-semibold);
+  color: var(--af-color-brand-primary);
+  margin: 0 0 var(--af-spacing-3);
+  letter-spacing: var(--af-letter-spacing-tight);
+}
+
+.af-newsletter__subheading {
+  font-size: var(--af-font-size-body-md);
+  line-height: var(--af-line-height-normal);
+  color: var(--af-color-neutral-600);
+  margin: 0 0 var(--af-spacing-6);
+}
+
+.af-newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-spacing-3);
+}
+
+.af-newsletter__fields {
+  display: flex;
+  gap: var(--af-spacing-2);
+}
+
+.af-newsletter__input {
+  flex: 1;
+  padding: var(--af-spacing-3) var(--af-spacing-4);
+  font-size: var(--af-font-size-body-md);
+  font-family: var(--af-font-family-body);
+  border: 1px solid var(--af-color-neutral-300);
+  border-radius: var(--af-radius-md);
+  background: var(--af-color-surface-page);
+  color: var(--af-color-brand-primary);
+  transition: border-color var(--af-duration-fast) var(--af-easing-default);
+}
+
+.af-newsletter__input::placeholder {
+  color: var(--af-color-neutral-500);
+}
+
+.af-newsletter__input:focus {
+  outline: none;
+  border-color: var(--af-color-brand-accent);
+}
+
+.af-newsletter__button {
+  padding: var(--af-spacing-3) var(--af-spacing-6);
+  font-size: var(--af-font-size-body-md);
+  font-weight: var(--af-font-weight-semibold);
+  font-family: var(--af-font-family-body);
+  color: white;
+  background: var(--af-color-brand-accent);
+  border: none;
+  border-radius: var(--af-radius-md);
+  cursor: pointer;
+  transition: background-color var(--af-duration-fast) var(--af-easing-default);
+}
+
+.af-newsletter__button:hover {
+  background: var(--af-color-brand-accent-hover);
+}
+
+.af-newsletter__disclaimer {
+  font-size: var(--af-font-size-caption);
+  color: var(--af-color-neutral-500);
+  margin: 0;
+}

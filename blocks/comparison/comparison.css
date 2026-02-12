@@ -1,0 +1,89 @@
+.comparison {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--af-spacing-6);
+  overflow: hidden;
+}
+
+.af-comparison-table__heading {
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-heading-md);
+  font-weight: var(--af-font-weight-semibold);
+  color: var(--af-color-brand-primary);
+  margin: 0 0 var(--af-spacing-4);
+  letter-spacing: var(--af-letter-spacing-tight);
+}
+
+.af-comparison-table__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.af-comparison-table__table {
+  width: 100%;
+  min-width: 400px;
+  border-collapse: collapse;
+  font-size: var(--af-font-size-body-md);
+  line-height: var(--af-line-height-normal);
+}
+
+.af-comparison-table__feature-header {
+  width: 140px;
+  padding: var(--af-spacing-3) var(--af-spacing-4);
+  text-align: left;
+  font-weight: var(--af-font-weight-medium);
+  color: var(--af-color-neutral-600);
+  background: var(--af-color-neutral-50);
+  border-bottom: 1px solid var(--af-color-neutral-200);
+}
+
+.af-comparison-table__product-header {
+  padding: var(--af-spacing-4);
+  text-align: center;
+  font-weight: var(--af-font-weight-semibold);
+  color: var(--af-color-brand-primary);
+  background: var(--af-color-neutral-50);
+  border-bottom: 2px solid var(--af-color-neutral-200);
+  border-left: 1px solid var(--af-color-neutral-200);
+}
+
+.af-comparison-table__product-header--highlight {
+  background: rgba(255, 79, 62, 0.06);
+  border-bottom-color: var(--af-color-brand-accent);
+}
+
+.af-comparison-table__row {
+  border-bottom: 1px solid var(--af-color-neutral-200);
+}
+
+.af-comparison-table__row:nth-child(even) {
+  background-color: var(--af-color-neutral-50);
+}
+
+.af-comparison-table__feature-label {
+  padding: var(--af-spacing-3) var(--af-spacing-4);
+  font-weight: var(--af-font-weight-medium);
+  color: var(--af-color-neutral-700);
+}
+
+.af-comparison-table__cell {
+  padding: var(--af-spacing-3) var(--af-spacing-4);
+  text-align: center;
+  color: var(--af-color-brand-primary);
+  border-left: 1px solid var(--af-color-neutral-200);
+}
+
+.af-comparison-table__cell--highlight {
+  background: rgba(255, 79, 62, 0.04);
+}
+
+.af-comparison-table__check {
+  color: var(--af-color-success);
+  font-weight: var(--af-font-weight-bold);
+}
+
+.af-comparison-table__cross {
+  color: var(--af-color-neutral-400);
+  font-weight: var(--af-font-weight-medium);
+}
