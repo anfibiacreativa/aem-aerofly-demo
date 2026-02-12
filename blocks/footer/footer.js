@@ -1,6 +1,12 @@
-export default function decorate(block) {
-  const rows = [...block.children];
-  block.innerHTML = '';
+import { getMetadata } from '../../scripts/aem.js';
+
+/**
+ * Decorate footer rows (column groups + copyright)
+ * @param {Element} container Element with rows of footer content
+ * @param {Element} block The footer block element
+ */
+function decorateFooterContent(container, block) {
+  const rows = [...container.children];
   block.classList.add('af-footer', 'af-footer--dark');
 
   const main = document.createElement('div');
@@ -59,4 +65,22 @@ export default function decorate(block) {
     bottom.appendChild(p);
     block.appendChild(bottom);
   }
+}
+
+export default async function decorate(block) {
+  // Fetch footer content from DA fragment
+  const footerMeta = getMetadata('footer');
+  const footerPath = footerMeta
+    ? new URL(footerMeta, window.location).pathname
+    : '/footer';
+
+  const resp = await fetch(`${footerPath}.plain.html`);
+  if (!resp.ok) return;
+
+  const html = await resp.text();
+  const fragment = document.createElement('div');
+  fragment.innerHTML = html;
+
+  block.innerHTML = '';
+  decorateFooterContent(fragment, block);
 }
