@@ -1,13 +1,27 @@
 .hero-banner-split {
-  display: grid;
+  display: grid !important;
   grid-template-columns: 1fr 1fr;
   min-height: 80vh;
   background: var(--af-color-neutral-50);
 }
 
+.hero-banner-split-wrapper {
+  padding: 0 !important;
+  max-width: none !important;
+}
+
 .af-hero-split__media {
   position: relative;
   overflow: hidden;
+  min-height: 400px;
+}
+
+.af-hero-split__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
 }
 
 .af-hero-split__image {
