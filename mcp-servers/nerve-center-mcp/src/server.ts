@@ -66,6 +66,38 @@ interface SeasonalEvent {
   relevance: string;
 }
 
+interface BrandVoiceGuideline {
+  id: string;
+  rule: string;
+  description: string;
+  applies_to: string[];
+  severity: string;
+  examples?: {
+    avoid: string[];
+    prefer: string[];
+  };
+  productLines?: Record<string, {
+    tone: string;
+    keywords: string[];
+    avoid: string[];
+  }>;
+}
+
+interface BrandVoice {
+  brand: string;
+  lastUpdated: string;
+  toneAttributes: Array<{ attribute: string; weight: number; description: string }>;
+  guidelines: BrandVoiceGuideline[];
+  headlinePatterns: {
+    effective: string[];
+    avoid: string[];
+  };
+  ctaGuidelines: {
+    primary: { maxLength: number; style: string; effective: string[]; avoid: string[] };
+    secondary: { maxLength: number; style: string; effective: string[]; avoid: string[] };
+  };
+}
+
 interface TrendsData {
   lastUpdated: string;
   trending: Trend[];
@@ -76,6 +108,7 @@ interface TrendsData {
     upcomingEvents: SeasonalEvent[];
     weatherInsight: string;
   };
+  brandVoice: BrandVoice;
 }
 
 function loadTrends(): TrendsData {
@@ -321,6 +354,188 @@ server.tool(
       content: [{
         type: 'text' as const,
         text: JSON.stringify(brief, null, 2),
+      }],
+    };
+  },
+);
+
+// ─── Tool: get_brand_voice_rules ───
+
+server.tool(
+  'get_brand_voice_rules',
+  'Get the Aerofly brand voice guidelines — tone attributes, content rules, headline patterns, and CTA guidelines. Use this BEFORE generating any page copy to ensure brand compliance (Act 5). Also returns product-line-specific voice rules.',
+  {
+    productLine: z.string().optional().describe('Filter for a specific product line: AirPulse, TrailForge, CloudStride'),
+    section: z.string().optional().describe('Filter rules relevant to a specific page section: headline, subheading, cta, body, feature-description, social-proof, announcement, specs'),
+  },
+  async ({ productLine, section }) => {
+    const data = loadTrends();
+    const voice = data.brandVoice;
+
+    let guidelines = voice.guidelines;
+
+    // Filter by section if specified
+    if (section) {
+      guidelines = guidelines.filter(g =>
+        g.applies_to.includes(section) || g.applies_to.includes('all')
+      );
+    }
+
+    // Add product-line-specific info if requested
+    let productLineVoice = null;
+    if (productLine) {
+      const plRule = voice.guidelines.find(g => g.productLines);
+      if (plRule?.productLines) {
+        const key = Object.keys(plRule.productLines).find(
+          k => k.toLowerCase() === productLine.toLowerCase()
+        );
+        if (key) {
+          productLineVoice = {
+            productLine: key,
+            ...plRule.productLines[key],
+          };
+        }
+      }
+    }
+
+    const result = {
+      brand: voice.brand,
+      lastUpdated: voice.lastUpdated,
+      toneAttributes: voice.toneAttributes,
+      guidelines: guidelines.map(g => ({
+        id: g.id,
+        rule: g.rule,
+        description: g.description,
+        severity: g.severity,
+        applies_to: g.applies_to,
+        examples: g.examples,
+      })),
+      headlinePatterns: voice.headlinePatterns,
+      ctaGuidelines: voice.ctaGuidelines,
+      ...(productLineVoice ? { productLineVoice } : {}),
+    };
+
+    return {
+      content: [{
+        type: 'text' as const,
+        text: JSON.stringify(result, null, 2),
+      }],
+    };
+  },
+);
+
+// ─── Tool: check_brand_compliance ───
+
+server.tool(
+  'check_brand_compliance',
+  'Check a piece of copy against Aerofly brand voice rules. Returns violations found and suggested alternatives. Use this after generating or editing page content to ensure brand compliance.',
+  {
+    text: z.string().describe('The copy text to check (headline, CTA, body copy, etc.)'),
+    section: z.string().describe('What type of content this is: headline, subheading, cta, body, feature-description, social-proof, announcement'),
+    productLine: z.string().optional().describe('Product line context: AirPulse, TrailForge, CloudStride'),
+  },
+  async ({ text, section, productLine }) => {
+    const data = loadTrends();
+    const voice = data.brandVoice;
+    const violations: Array<{
+      ruleId: string;
+      rule: string;
+      severity: string;
+      violation: string;
+      suggestion: string;
+    }> = [];
+
+    const textLower = text.toLowerCase();
+
+    for (const guideline of voice.guidelines) {
+      // Check if rule applies to this section
+      if (!guideline.applies_to.includes(section) && !guideline.applies_to.includes('all')) {
+        continue;
+      }
+
+      // Check against avoid examples
+      if (guideline.examples?.avoid) {
+        for (const avoidPhrase of guideline.examples.avoid) {
+          if (textLower.includes(avoidPhrase.toLowerCase())) {
+            violations.push({
+              ruleId: guideline.id,
+              rule: guideline.rule,
+              severity: guideline.severity,
+              violation: `Found: "${avoidPhrase}" — ${guideline.description}`,
+              suggestion: guideline.examples.prefer
+                ? `Consider: "${guideline.examples.prefer[0]}" or "${guideline.examples.prefer[1]}"`
+                : guideline.description,
+            });
+          }
+        }
+      }
+
+      // Check product-line-specific rules
+      if (guideline.productLines && productLine) {
+        const key = Object.keys(guideline.productLines).find(
+          k => k.toLowerCase() === productLine.toLowerCase()
+        );
+        if (key) {
+          const plRules = guideline.productLines[key];
+          for (const avoidWord of plRules.avoid) {
+            if (textLower.includes(avoidWord.toLowerCase())) {
+              violations.push({
+                ruleId: guideline.id,
+                rule: `Product line voice: ${key}`,
+                severity: 'medium',
+                violation: `"${avoidWord}" doesn't align with ${key}'s ${plRules.tone} voice`,
+                suggestion: `Use ${key} keywords instead: ${plRules.keywords.join(', ')}`,
+              });
+            }
+          }
+        }
+      }
+    }
+
+    // Check CTA length
+    if (section === 'cta') {
+      if (text.length > voice.ctaGuidelines.primary.maxLength) {
+        violations.push({
+          ruleId: 'cta-length',
+          rule: 'CTA maximum length',
+          severity: 'medium',
+          violation: `CTA "${text}" is ${text.length} characters (max: ${voice.ctaGuidelines.primary.maxLength})`,
+          suggestion: `Shorten to under ${voice.ctaGuidelines.primary.maxLength} characters`,
+        });
+      }
+    }
+
+    // Check headline patterns
+    if (section === 'headline') {
+      for (const avoidPattern of voice.headlinePatterns.avoid) {
+        // Simple pattern check — "The Best X Ever Made" type patterns
+        if (avoidPattern.includes('[Superlative]') && /\b(best|greatest|ultimate|#1|number one)\b/i.test(text)) {
+          violations.push({
+            ruleId: 'headline-pattern',
+            rule: 'Avoid superlative headlines',
+            severity: 'medium',
+            violation: `Headline uses superlative language which can feel inauthentic`,
+            suggestion: `Try a pattern like: "${voice.headlinePatterns.effective[0]}" or "${voice.headlinePatterns.effective[1]}"`,
+          });
+        }
+      }
+    }
+
+    return {
+      content: [{
+        type: 'text' as const,
+        text: JSON.stringify({
+          text,
+          section,
+          productLine: productLine || 'general',
+          compliant: violations.length === 0,
+          violationCount: violations.length,
+          violations,
+          ...(violations.length === 0
+            ? { message: 'Copy is brand-compliant. No violations found.' }
+            : { message: `Found ${violations.length} violation(s). Review and update before publishing.` }
+          ),
+        }, null, 2),
       }],
     };
   },

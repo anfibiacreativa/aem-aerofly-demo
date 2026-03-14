@@ -9,18 +9,9 @@
       "score": 94,
       "summary": "Consumer demand for eco-friendly athletic footwear has surged 340% since 2024. Recycled materials and carbon-neutral manufacturing are now table stakes for premium brands.",
       "signals": [
-        {
-          "source": "Google Trends",
-          "metric": "Search volume +180% YoY for 'sustainable running shoes'"
-        },
-        {
-          "source": "TikTok",
-          "metric": "#EcoRun has 4.7B views, up 120% this month"
-        },
-        {
-          "source": "Reddit r/running",
-          "metric": "3 of top 10 posts this week mention sustainability"
-        }
+        { "source": "Google Trends", "metric": "Search volume +180% YoY for 'sustainable running shoes'" },
+        { "source": "TikTok", "metric": "#EcoRun has 4.7B views, up 120% this month" },
+        { "source": "Reddit r/running", "metric": "3 of top 10 posts this week mention sustainability" }
       ],
       "contentAngles": [
         "Lead with recycled material percentage in hero messaging",
@@ -28,16 +19,8 @@
         "Feature athlete testimonials about sustainable gear choices",
         "Use earthy/natural imagery alongside product shots"
       ],
-      "relevantProducts": [
-        "AirPulse Max",
-        "CloudStride"
-      ],
-      "tags": [
-        "sustainability",
-        "eco-friendly",
-        "recycled",
-        "carbon-neutral"
-      ]
+      "relevantProducts": ["AirPulse Max", "CloudStride"],
+      "tags": ["sustainability", "eco-friendly", "recycled", "carbon-neutral"]
     },
     {
       "id": "trend-002",
@@ -47,18 +30,9 @@
       "score": 91,
       "summary": "Trail running participation has doubled since 2024, driven by post-pandemic outdoor activity preferences. Ultra-marathon registrations are up 65% YoY. Trail shoe segment growing 3x faster than road.",
       "signals": [
-        {
-          "source": "Strava",
-          "metric": "Trail run activities up 89% globally in January 2026"
-        },
-        {
-          "source": "Instagram",
-          "metric": "#TrailRunning posts hit 28M, growth rate accelerating"
-        },
-        {
-          "source": "Race registrations",
-          "metric": "UTMB 2026 sold out in 11 minutes (previous record: 43 min)"
-        }
+        { "source": "Strava", "metric": "Trail run activities up 89% globally in January 2026" },
+        { "source": "Instagram", "metric": "#TrailRunning posts hit 28M, growth rate accelerating" },
+        { "source": "Race registrations", "metric": "UTMB 2026 sold out in 11 minutes (previous record: 43 min)" }
       ],
       "contentAngles": [
         "Position trail shoes as gateway to adventure, not just performance",
@@ -66,15 +40,8 @@
         "Emphasize grip and durability over speed metrics",
         "Partner content with trail running events or athletes"
       ],
-      "relevantProducts": [
-        "TrailForge Pro"
-      ],
-      "tags": [
-        "trail",
-        "outdoor",
-        "adventure",
-        "ultra"
-      ]
+      "relevantProducts": ["TrailForge Pro"],
+      "tags": ["trail", "outdoor", "adventure", "ultra"]
     },
     {
       "id": "trend-003",
@@ -84,18 +51,9 @@
       "score": 78,
       "summary": "Consumers increasingly expect AI-driven size recommendations and personalized fit. Brands offering virtual try-on and gait analysis see 40% fewer returns.",
       "signals": [
-        {
-          "source": "TechCrunch",
-          "metric": "3 major footwear brands launched AI fit tools in Q1 2026"
-        },
-        {
-          "source": "Consumer survey",
-          "metric": "67% of Gen Z buyers want personalized fit recommendations"
-        },
-        {
-          "source": "Returns data",
-          "metric": "AI-sized orders have 40% lower return rate industry-wide"
-        }
+        { "source": "TechCrunch", "metric": "3 major footwear brands launched AI fit tools in Q1 2026" },
+        { "source": "Consumer survey", "metric": "67% of Gen Z buyers want personalized fit recommendations" },
+        { "source": "Returns data", "metric": "AI-sized orders have 40% lower return rate industry-wide" }
       ],
       "contentAngles": [
         "Highlight SmartFit technology in product descriptions",
@@ -103,18 +61,8 @@
         "Use data/stats about fit accuracy as social proof",
         "Position as technology-forward brand"
       ],
-      "relevantProducts": [
-        "AirPulse Max",
-        "CloudStride",
-        "TrailForge Pro"
-      ],
-      "tags": [
-        "AI",
-        "personalization",
-        "fit",
-        "technology",
-        "innovation"
-      ]
+      "relevantProducts": ["AirPulse Max", "CloudStride", "TrailForge Pro"],
+      "tags": ["AI", "personalization", "fit", "technology", "innovation"]
     },
     {
       "id": "trend-004",
@@ -124,18 +72,9 @@
       "score": 87,
       "summary": "The narrative around running has shifted from pure performance to mental wellness. 'Running for mental health' content outperforms 'running for fitness' across all platforms.",
       "signals": [
-        {
-          "source": "YouTube",
-          "metric": "'Running and mental health' videos avg 2.3M views (up 200%)"
-        },
-        {
-          "source": "Pinterest",
-          "metric": "Mindful running boards saved 5x more than marathon training"
-        },
-        {
-          "source": "Twitter/X",
-          "metric": "#RunForYourMind trending 4 times in January"
-        }
+        { "source": "YouTube", "metric": "'Running and mental health' videos avg 2.3M views (up 200%)" },
+        { "source": "Pinterest", "metric": "Mindful running boards saved 5x more than marathon training" },
+        { "source": "Twitter/X", "metric": "#RunForYourMind trending 4 times in January" }
       ],
       "contentAngles": [
         "Lead with emotional benefit ('Find your calm') over performance ('Run faster')",
@@ -143,15 +82,8 @@
         "Feature diverse runners with personal wellness stories",
         "Position shoes as partner in wellbeing journey, not just competition"
       ],
-      "relevantProducts": [
-        "CloudStride"
-      ],
-      "tags": [
-        "mental-health",
-        "wellness",
-        "mindfulness",
-        "self-care"
-      ]
+      "relevantProducts": ["CloudStride"],
+      "tags": ["mental-health", "wellness", "mindfulness", "self-care"]
     },
     {
       "id": "trend-005",
@@ -161,18 +93,9 @@
       "score": 96,
       "summary": "Tokyo Marathon just completed with a world record. Berlin and Chicago spots sold out instantly. Marathon content is generating unprecedented engagement across all demographics.",
       "signals": [
-        {
-          "source": "Global media",
-          "metric": "Tokyo Marathon world record dominated headlines for 3 days"
-        },
-        {
-          "source": "Strava",
-          "metric": "Marathon training plan starts up 150% in February"
-        },
-        {
-          "source": "YouTube",
-          "metric": "Marathon race day vlogs averaging 5M+ views"
-        }
+        { "source": "Global media", "metric": "Tokyo Marathon world record dominated headlines for 3 days" },
+        { "source": "Strava", "metric": "Marathon training plan starts up 150% in February" },
+        { "source": "YouTube", "metric": "Marathon race day vlogs averaging 5M+ views" }
       ],
       "contentAngles": [
         "Reference the world record moment in hero copy",
@@ -180,16 +103,8 @@
         "Create urgency around marathon season preparation",
         "Use dynamic, high-energy race photography"
       ],
-      "relevantProducts": [
-        "AirPulse Max"
-      ],
-      "tags": [
-        "marathon",
-        "racing",
-        "world-record",
-        "performance",
-        "carbon-plate"
-      ]
+      "relevantProducts": ["AirPulse Max"],
+      "tags": ["marathon", "racing", "world-record", "performance", "carbon-plate"]
     }
   ],
   "viralContent": [
@@ -250,228 +165,130 @@
   "seasonalContext": {
     "currentSeason": "Early Spring 2026",
     "upcomingEvents": [
-      {
-        "event": "Boston Marathon",
-        "date": "2026-04-20",
-        "leadTime": "10 weeks",
-        "relevance": "Marathon training content, carbon-plate messaging"
-      },
-      {
-        "event": "Earth Day",
-        "date": "2026-04-22",
-        "leadTime": "10 weeks",
-        "relevance": "Sustainability campaign moment, recycled materials push"
-      },
-      {
-        "event": "Global Running Day",
-        "date": "2026-06-03",
-        "leadTime": "16 weeks",
-        "relevance": "Community celebration, inclusive running messaging"
-      },
-      {
-        "event": "Summer Training Season",
-        "date": "2026-06-01",
-        "leadTime": "16 weeks",
-        "relevance": "Hot weather gear, hydration, CloudStride breathability"
-      }
+      { "event": "Boston Marathon", "date": "2026-04-20", "leadTime": "10 weeks", "relevance": "Marathon training content, carbon-plate messaging" },
+      { "event": "Earth Day", "date": "2026-04-22", "leadTime": "10 weeks", "relevance": "Sustainability campaign moment, recycled materials push" },
+      { "event": "Global Running Day", "date": "2026-06-03", "leadTime": "16 weeks", "relevance": "Community celebration, inclusive running messaging" },
+      { "event": "Summer Training Season", "date": "2026-06-01", "leadTime": "16 weeks", "relevance": "Hot weather gear, hydration, CloudStride breathability" }
     ],
     "weatherInsight": "Northern hemisphere entering running season. Training plan searches peak in Feb-March. Opportunity to capture intent with 'start your spring' messaging."
   },
   "brandVoice": {
     "brand": "Aerofly",
-    "tagline": "Engineered to Fly",
+    "lastUpdated": "2026-02-09T18:00:00Z",
     "toneAttributes": [
-      "confident",
-      "inclusive",
-      "premium",
-      "sustainability-conscious"
+      { "attribute": "inclusive", "weight": 0.9, "description": "Running is for everyone — every pace, every distance, every body. Never elitist." },
+      { "attribute": "aspirational", "weight": 0.8, "description": "Inspire personal bests, not competition with others." },
+      { "attribute": "premium", "weight": 0.7, "description": "Confidence in craftsmanship and innovation, without arrogance." },
+      { "attribute": "energetic", "weight": 0.7, "description": "Dynamic, forward-moving language. Not frantic." },
+      { "attribute": "authentic", "weight": 0.85, "description": "Real stories, real data, real impact. No greenwashing or empty claims." }
     ],
     "guidelines": [
       {
         "id": "voice-001",
         "rule": "Inclusive over competitive",
-        "description": "Prefer language that invites everyone in rather than language that implies only elite athletes. 'Every mile is your mile' over 'Built for your fastest mile'.",
-        "examples": {
-          "avoid": [
-            "Beat the competition",
-            "Only for the fastest",
-            "Crush your goals",
-            "Dominate the race",
-            "Built for your fastest mile"
-          ],
-          "prefer": [
-            "Every mile is your mile",
-            "Run your way",
-            "Find your pace",
-            "Your journey, your rules",
-            "Engineered for every runner"
-          ]
-        },
+        "description": "Prefer inclusive language ('every runner', 'your pace') over competitive language ('beat', 'crush', 'dominate', 'fastest'). The AirPulse line specifically targets broad audiences.",
+        "applies_to": ["headline", "subheading", "cta"],
         "severity": "high",
-        "productLines": [
-          "all"
-        ]
+        "examples": {
+          "avoid": ["Built for Your Fastest Mile", "Crush Your Personal Best", "Dominate the Course", "Leave Everyone Behind"],
+          "prefer": ["Every Mile Is Your Mile", "Your Run. Your Pace.", "Run Without Limits", "Find Your Stride"]
+        }
       },
       {
         "id": "voice-002",
-        "rule": "Sustainability is embedded, not bolted on",
-        "description": "Sustainability should feel natural and integral, not preachy. Lead with the performance benefit, then mention sustainability as a natural consequence.",
+        "rule": "Sustainability claims must be specific",
+        "description": "Never use vague sustainability claims. Always cite specific metrics (percentage, weight, certification).",
+        "applies_to": ["body", "feature-description"],
+        "severity": "high",
         "examples": {
-          "avoid": [
-            "Save the planet with every step",
-            "Eco-warrior shoes",
-            "Green running",
-            "Feel guilty no more"
-          ],
-          "prefer": [
-            "98% recycled materials. Zero compromise on performance.",
-            "Engineered from ocean plastic — lighter, stronger, better.",
-            "Carbon-neutral by design, not afterthought."
-          ]
-        },
-        "severity": "medium",
-        "productLines": [
-          "all"
-        ]
+          "avoid": ["Eco-friendly materials", "Good for the planet", "Sustainable choice", "Green running"],
+          "prefer": ["98% recycled materials", "Carbon-neutral manufacturing since 2025", "12 ocean-bound plastic bottles per pair", "B Corp certified"]
+        }
       },
       {
         "id": "voice-003",
-        "rule": "Technology is enabling, not intimidating",
-        "description": "Technical features should feel accessible. Explain what the technology does for the runner, not just what it is.",
-        "examples": {
-          "avoid": [
-            "Proprietary ReactFoam Pro compound with 65% HSER",
-            "Advanced AeroWeave™ precision-knit mesh with recycled PET"
-          ],
-          "prefer": [
-            "ReactFoam Pro — so responsive, every step pushes you forward.",
-            "AeroWeave™ — lighter than air, made from ocean plastic."
-          ]
-        },
+        "rule": "Technology names are always trademarked",
+        "description": "Aerofly proprietary technologies must include trademark symbols on first mention: AeroWeave™, ReactFoam Pro™, SmartFit™, TrailGrip™.",
+        "applies_to": ["body", "feature-description", "specs"],
         "severity": "medium",
-        "productLines": [
-          "all"
-        ]
+        "examples": {
+          "avoid": ["AeroWeave upper", "ReactFoam midsole"],
+          "prefer": ["AeroWeave™ upper", "ReactFoam Pro™ midsole"]
+        }
       },
       {
         "id": "voice-004",
         "rule": "Urgency without pressure",
-        "description": "Create excitement and momentum without aggressive sales pressure. Make people want to act, not feel forced.",
+        "description": "Create excitement and momentum without high-pressure sales tactics. No countdown timers, scarcity manipulation, or FOMO language.",
+        "applies_to": ["cta", "announcement", "headline"],
+        "severity": "medium",
         "examples": {
-          "avoid": [
-            "Buy now before it's gone!",
-            "Limited time only!",
-            "Don't miss out!",
-            "Act fast!"
-          ],
-          "prefer": [
-            "Find your pair",
-            "Start your journey",
-            "Ready when you are",
-            "Shop the collection"
-          ]
-        },
-        "severity": "high",
-        "productLines": [
-          "all"
-        ]
+          "avoid": ["Only 3 left!", "Don't miss out!", "Last chance!", "Hurry before they're gone!"],
+          "prefer": ["Just Dropped", "Now Available", "New Arrival", "Explore the Collection"]
+        }
       },
       {
         "id": "voice-005",
-        "rule": "AirPulse line: performance with soul",
-        "description": "The AirPulse line can lean more into performance language, but always with an emotional hook. Speed and soul together.",
-        "examples": {
-          "avoid": [
-            "The fastest shoe we've ever made",
-            "Pure racing machine"
-          ],
-          "prefer": [
-            "Every record starts with a single step.",
-            "Speed meets soul.",
-            "Engineered for the moments that matter."
-          ]
-        },
+        "rule": "CTAs are invitational, not commanding",
+        "description": "CTA buttons should feel like an invitation, not a command. Use first-person ('Find My Size') or exploratory ('Explore', 'Discover') language.",
+        "applies_to": ["cta"],
         "severity": "medium",
-        "productLines": [
-          "AirPulse Max",
-          "AirPulse Pro"
-        ]
+        "examples": {
+          "avoid": ["Buy Now", "Order Today", "Add to Cart", "Purchase"],
+          "prefer": ["Find Your Pace", "Explore the Collection", "Shop Now", "Discover More", "Find My Size"]
+        }
       },
       {
         "id": "voice-006",
-        "rule": "CloudStride line: everyday joy",
-        "description": "The CloudStride line is about making every run enjoyable, not just race day. Emphasize comfort, versatility, and daily ritual.",
-        "examples": {
-          "avoid": [
-            "Your daily trainer",
-            "Basic running shoe"
-          ],
-          "prefer": [
-            "From morning miles to evening errands.",
-            "The shoe that goes everywhere you do.",
-            "Run, walk, live — in total comfort."
-          ]
-        },
+        "rule": "Product-line specific voice",
+        "description": "Each product line has a distinct voice extension.",
+        "applies_to": ["all"],
         "severity": "low",
-        "productLines": [
-          "CloudStride"
-        ]
+        "productLines": {
+          "AirPulse": { "tone": "inclusive + performance", "keywords": ["every runner", "your mile", "personal best"], "avoid": ["elite", "professional-grade", "race-day"] },
+          "TrailForge": { "tone": "adventurous + rugged", "keywords": ["explore", "discover", "uncharted", "wild"], "avoid": ["basic", "casual", "everyday"] },
+          "CloudStride": { "tone": "everyday + effortless", "keywords": ["effortless", "all-day", "versatile", "comfort"], "avoid": ["extreme", "intense", "hardcore"] }
+        }
       },
       {
         "id": "voice-007",
-        "rule": "TrailForge line: adventure calling",
-        "description": "The TrailForge line should evoke exploration and the pull of the wild. Nature as partner, not obstacle.",
+        "rule": "Numbers tell the story",
+        "description": "Use specific numbers and data points to build credibility. Vague claims erode trust.",
+        "applies_to": ["social-proof", "feature-description", "body"],
+        "severity": "medium",
         "examples": {
-          "avoid": [
-            "Conquer the trail",
-            "Tame the wilderness",
-            "Beast mode trail shoe"
-          ],
-          "prefer": [
-            "Where the trail takes you.",
-            "Built for what's beyond the road.",
-            "Your next adventure starts here."
-          ]
-        },
-        "severity": "low",
-        "productLines": [
-          "TrailForge Pro"
-        ]
+          "avoid": ["Loved by runners everywhere", "Top-rated shoes", "Industry-leading cushioning"],
+          "prefer": ["10M+ runners in 50+ countries", "4.9-star average from 47,000 reviews", "65% energy return — highest in category"]
+        }
       }
     ],
     "headlinePatterns": {
-      "preferred": [
-        "[Emotion/benefit]. [Product feature].",
-        "Your [noun]. Your [noun].",
-        "[Action verb] your [journey/path/way].",
-        "Engineered for [aspiration]."
+      "effective": [
+        "[Benefit]. [Proof Point].",
+        "Every [noun] Is Your [noun]",
+        "[Product Technology] meets [Emotional Benefit]",
+        "[Action Verb] Without [Limitation]"
       ],
       "avoid": [
-        "The [superlative] [product] ever [made/built].",
-        "[Imperative] now!",
-        "Don't [miss/wait/hesitate]."
+        "The Best [Product] Ever Made",
+        "[Superlative] [Product Category]",
+        "Don't [Negative Action]",
+        "Why [Competitor] Can't [Comparison]"
       ]
     },
     "ctaGuidelines": {
-      "primaryCTA": [
-        "Shop the Collection",
-        "Find Your Pair",
-        "Start Your Journey",
-        "Explore",
-        "Shop Now"
-      ],
-      "secondaryCTA": [
-        "Learn More",
-        "Find a Store",
-        "See the Technology",
-        "Read the Story"
-      ],
-      "avoid": [
-        "Buy Now!",
-        "Add to Cart Now!",
-        "Don't Miss Out",
-        "Limited Offer"
-      ]
+      "primary": {
+        "maxLength": 20,
+        "style": "Invitational, action-oriented",
+        "effective": ["Shop Now", "Find Your Pace", "Explore the Collection", "Discover More"],
+        "avoid": ["Buy Now", "Order Today", "Limited Time Offer", "Click Here"]
+      },
+      "secondary": {
+        "maxLength": 15,
+        "style": "Informational, exploratory",
+        "effective": ["Learn More", "See Reviews", "Watch Film", "Read the Story"],
+        "avoid": ["Don't Miss This", "Act Now", "Last Chance"]
+      }
     }
   }
 }
