@@ -39,7 +39,9 @@ function buildHeroBlock(main) {
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    if (h1.closest('.hero') || h1.closest('.hero-banner') || picture.closest('.hero') || picture.closest('.hero-banner')) {
+    // Skip if already in a hero block variant
+    const heroSelectors = '.hero, .hero-banner, .hero-banner-split, .hero-banner-video';
+    if (h1.closest(heroSelectors) || picture.closest(heroSelectors)) {
       return;
     }
     const section = document.createElement('div');
