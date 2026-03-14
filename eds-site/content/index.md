@@ -6,7 +6,7 @@ This is the homepage for the Aerofly AEM Edge Delivery Services site.
 
 | Hero Banner |
 | --- |
-| ![Aerofly Hero](https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1920&q=80) |
+| ![Aerofly Hero](/content/products/aerofly_part1.png) |
 | **SPRING 2026 COLLECTION** |
 | # Run Without Limits |
 | Three new silhouettes. One relentless pursuit of performance. |
@@ -36,9 +36,9 @@ This is the homepage for the Aerofly AEM Edge Delivery Services site.
 | Categories |
 | --- |
 | ## Shop by Category |
-| ![Running](https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=400&q=80) [Running](/running) (124 products) |
-| ![Training](https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&q=80) [Training](/training) (89 products) |
-| ![Trail](https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&q=80) [Trail](/trail) (56 products) |
+| ![Running](/content/products/aerofly-1-part1.png) [Running](/running) (124 products) |
+| ![Training](/content/products/aerofly-2-part1.png) [Training](/training) (89 products) |
+| ![Trail](/content/products/aerofly-3-part1.png) [Trail](/trail) (56 products) |
 
 ---
 
