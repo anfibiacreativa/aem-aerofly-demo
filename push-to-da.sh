@@ -32,6 +32,7 @@ declare -a PAGES=(
   "nav.html"
   "footer.html"
   "index.html"
+  "demo/index.html"
   "about/index.html"
   "careers/index.html"
   "cart/index.html"
