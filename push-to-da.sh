@@ -35,6 +35,7 @@ declare -a PAGES=(
   "buy-aerofly/index.html"
   "buy-aerofly-a/index.html"
   "buy-aerofly-b/index.html"
+  "buy-aerofly-c/index.html"
   "about/index.html"
   "careers/index.html"
   "cart/index.html"
