@@ -6,7 +6,7 @@ Join Aerofly at runs, pop-ups, and community events near you.
 
 | Hero Banner |
 | --- |
-| ![Events Hero](/content/products/aerofly-5-part2.png) |
+| ![Events Hero](/media/aerofly-5-part2.png) |
 | **COMMUNITY** |
 | # Run With Us |
 | Meet fellow runners. Try the latest gear. Find your crew. |

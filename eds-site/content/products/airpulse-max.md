@@ -13,10 +13,10 @@ The flagship performance running shoe from Aerofly.
 
 | Product Gallery |
 | --- |
-| ![AirPulse Max Front](/content/products/aerofly-4-part1.png) |
-| ![AirPulse Max Side](/content/products/aerofly-4-part2.png) |
-| ![AirPulse Max Detail](/content/products/aerofly-4-part3.png) |
-| ![AirPulse Max Sole](/content/products/aerofly-4-part4.png) |
+| ![AirPulse Max Front](/media/aerofly-4-part1.png) |
+| ![AirPulse Max Side](/media/aerofly-4-part2.png) |
+| ![AirPulse Max Detail](/media/aerofly-4-part3.png) |
+| ![AirPulse Max Sole](/media/aerofly-4-part4.png) |
 
 ---
 
