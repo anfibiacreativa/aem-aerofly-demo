@@ -1,0 +1,196 @@
+.hero-banner-video {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.af-hero-video__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.af-hero-video__video,
+.af-hero-video__fallback-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.af-hero-video__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 22, 40, 0.3) 0%,
+    rgba(10, 22, 40, 0.6) 50%,
+    rgba(10, 22, 40, 0.8) 100%
+  );
+}
+
+.af-hero-video__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+  padding: var(--af-spacing-8);
+}
+
+.af-hero-video__badge {
+  display: inline-block;
+  padding: var(--af-spacing-2) var(--af-spacing-5);
+  background: var(--af-color-brand-accent);
+  color: white;
+  font-size: var(--af-font-size-overline);
+  font-weight: var(--af-font-weight-bold);
+  letter-spacing: var(--af-letter-spacing-wider);
+  text-transform: uppercase;
+  border-radius: var(--af-radius-full);
+  margin-bottom: var(--af-spacing-6);
+}
+
+.af-hero-video__heading {
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-display-2xl);
+  font-weight: var(--af-font-weight-bold);
+  line-height: var(--af-line-height-tight);
+  letter-spacing: var(--af-letter-spacing-tight);
+  margin: 0 0 var(--af-spacing-6);
+  color: white;
+}
+
+.af-hero-video__subheading {
+  font-size: var(--af-font-size-body-xl);
+  line-height: var(--af-line-height-relaxed);
+  margin: 0 0 var(--af-spacing-10);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.af-hero-video__actions {
+  display: flex;
+  gap: var(--af-spacing-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.af-hero-video__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--af-spacing-5) var(--af-spacing-10);
+  border-radius: var(--af-radius-md);
+  font-size: var(--af-font-size-body-lg);
+  font-weight: var(--af-font-weight-semibold);
+  text-decoration: none;
+  transition: all var(--af-duration-fast) var(--af-easing-default);
+  min-width: 180px;
+}
+
+.af-hero-video__cta--primary {
+  background: white;
+  color: var(--af-color-neutral-900);
+}
+
+.af-hero-video__cta--primary:hover {
+  background: var(--af-color-neutral-100);
+  color: var(--af-color-neutral-900);
+  transform: translateY(-2px);
+  box-shadow: var(--af-shadow-xl);
+}
+
+.af-hero-video__cta--secondary {
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+}
+
+.af-hero-video__cta--secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Video control button */
+.af-hero-video__control {
+  position: absolute;
+  bottom: var(--af-spacing-8);
+  right: var(--af-spacing-8);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--af-radius-full);
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--af-duration-fast) var(--af-easing-default);
+  backdrop-filter: blur(4px);
+}
+
+.af-hero-video__control:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: white;
+}
+
+.af-hero-video__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.af-hero-video__icon--play {
+  display: none;
+}
+
+.af-hero-video__control--paused .af-hero-video__icon--pause {
+  display: none;
+}
+
+.af-hero-video__control--paused .af-hero-video__icon--play {
+  display: block;
+}
+
+/* Centered variant */
+.hero-banner-video.centered .af-hero-video__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Minimal variant */
+.hero-banner-video.minimal .af-hero-video__overlay {
+  background: rgba(10, 22, 40, 0.4);
+}
+
+@media (max-width: 768px) {
+  .hero-banner-video {
+    min-height: 90vh;
+  }
+
+  .af-hero-video__heading {
+    font-size: var(--af-font-size-display-lg);
+  }
+
+  .af-hero-video__subheading {
+    font-size: var(--af-font-size-body-lg);
+  }
+
+  .af-hero-video__content {
+    padding: var(--af-spacing-6);
+  }
+
+  .af-hero-video__control {
+    bottom: var(--af-spacing-4);
+    right: var(--af-spacing-4);
+    width: 40px;
+    height: 40px;
+  }
+}

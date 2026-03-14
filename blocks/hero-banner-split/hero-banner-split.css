@@ -1,0 +1,181 @@
+.hero-banner-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  background: var(--af-color-neutral-50);
+}
+
+.af-hero-split__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.af-hero-split__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.af-hero-split__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--af-spacing-16);
+  background: var(--af-color-neutral-900);
+  color: white;
+}
+
+.af-hero-split__overline {
+  display: block;
+  font-size: var(--af-font-size-overline);
+  font-weight: var(--af-font-weight-semibold);
+  letter-spacing: var(--af-letter-spacing-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--af-spacing-4);
+  color: var(--af-color-brand-accent);
+}
+
+.af-hero-split__heading {
+  font-family: var(--af-font-family-heading);
+  font-size: var(--af-font-size-display-lg);
+  font-weight: var(--af-font-weight-bold);
+  line-height: var(--af-line-height-tight);
+  letter-spacing: var(--af-letter-spacing-tight);
+  margin: 0 0 var(--af-spacing-6);
+  color: white;
+}
+
+.af-hero-split__description {
+  font-size: var(--af-font-size-body-lg);
+  line-height: var(--af-line-height-relaxed);
+  margin: 0 0 var(--af-spacing-8);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 480px;
+}
+
+.af-hero-split__features {
+  list-style: none;
+  margin: 0 0 var(--af-spacing-8);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-spacing-3);
+}
+
+.af-hero-split__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--af-spacing-3);
+  font-size: var(--af-font-size-body-md);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.af-hero-split__check {
+  width: 20px;
+  height: 20px;
+  color: var(--af-color-brand-accent);
+  flex-shrink: 0;
+}
+
+.af-hero-split__actions {
+  display: flex;
+  gap: var(--af-spacing-4);
+  flex-wrap: wrap;
+}
+
+.af-hero-split__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--af-spacing-4) var(--af-spacing-8);
+  border-radius: var(--af-radius-md);
+  font-size: var(--af-font-size-body-md);
+  font-weight: var(--af-font-weight-semibold);
+  text-decoration: none;
+  transition: all var(--af-duration-fast) var(--af-easing-default);
+  min-width: 160px;
+}
+
+.af-hero-split__cta--primary {
+  background: var(--af-color-brand-accent);
+  color: white;
+}
+
+.af-hero-split__cta--primary:hover {
+  background: var(--af-color-brand-accent-hover);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--af-shadow-lg);
+}
+
+.af-hero-split__cta--secondary {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: white;
+}
+
+.af-hero-split__cta--secondary:hover {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Reversed variant */
+.hero-banner-split.reversed {
+  direction: rtl;
+}
+
+.hero-banner-split.reversed > * {
+  direction: ltr;
+}
+
+/* Light variant */
+.hero-banner-split.light .af-hero-split__content {
+  background: white;
+  color: var(--af-color-neutral-900);
+}
+
+.hero-banner-split.light .af-hero-split__heading {
+  color: var(--af-color-neutral-900);
+}
+
+.hero-banner-split.light .af-hero-split__description {
+  color: var(--af-color-neutral-600);
+}
+
+.hero-banner-split.light .af-hero-split__feature {
+  color: var(--af-color-neutral-700);
+}
+
+.hero-banner-split.light .af-hero-split__cta--secondary {
+  border-color: var(--af-color-neutral-300);
+  color: var(--af-color-neutral-900);
+}
+
+.hero-banner-split.light .af-hero-split__cta--secondary:hover {
+  border-color: var(--af-color-neutral-900);
+  background: var(--af-color-neutral-100);
+}
+
+@media (max-width: 1024px) {
+  .hero-banner-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .af-hero-split__media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .af-hero-split__content {
+    padding: var(--af-spacing-10) var(--af-spacing-6);
+  }
+
+  .af-hero-split__heading {
+    font-size: var(--af-font-size-display-md);
+  }
+
+  .hero-banner-split.reversed {
+    direction: ltr;
+  }
+}
