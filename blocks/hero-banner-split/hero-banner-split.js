@@ -84,4 +84,24 @@ export default function decorate(block) {
     block.appendChild(mediaSide);
     block.appendChild(contentSide);
   }
+
+  // Defensive fallback: stack layout when rendered block width is too narrow
+  // (helps iframe and split-screen cases where viewport media queries are not enough).
+  const STACK_BREAKPOINT = 768;
+  const updateStackClass = () => {
+    if (block.clientWidth <= STACK_BREAKPOINT) {
+      block.classList.add('af-hero-split--stack');
+    } else {
+      block.classList.remove('af-hero-split--stack');
+    }
+  };
+
+  updateStackClass();
+
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(updateStackClass);
+    observer.observe(block);
+  } else {
+    window.addEventListener('resize', updateStackClass, { passive: true });
+  }
 }
