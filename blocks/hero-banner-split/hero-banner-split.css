@@ -1,4 +1,5 @@
 .hero-banner-split {
+  position: relative;
   display: grid !important;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -16,6 +17,7 @@
   grid-column: 1;
   grid-row: 1 / span 100;
   position: relative;
+  z-index: 0;
   overflow: hidden;
   min-height: 80vh;
 }
@@ -35,6 +37,8 @@
 /* Raw EDS structure - ALL content rows in second column */
 .hero-banner-split > div:not(:first-child) {
   grid-column: 2;
+  position: relative;
+  z-index: 1;
   background: var(--af-color-neutral-900);
   color: white;
   padding: 0 var(--af-spacing-10);
@@ -93,6 +97,7 @@
 
 .af-hero-split__media {
   position: relative;
+  z-index: 0;
   overflow: hidden;
   min-height: 400px;
 }
@@ -112,6 +117,8 @@
 }
 
 .af-hero-split__content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -258,8 +265,29 @@
     min-height: auto;
   }
 
+  .hero-banner-split > div:first-child {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 360px;
+  }
+
+  .hero-banner-split > div:not(:first-child) {
+    grid-column: 1;
+    padding-left: var(--af-spacing-6);
+    padding-right: var(--af-spacing-6);
+  }
+
+  .hero-banner-split > div:nth-child(2) {
+    padding-top: var(--af-spacing-10);
+  }
+
+  .hero-banner-split > div:last-child {
+    padding-bottom: var(--af-spacing-10);
+  }
+
   .af-hero-split__media {
     aspect-ratio: 16 / 10;
+    min-height: 320px;
   }
 
   .af-hero-split__content {
@@ -272,5 +300,51 @@
 
   .hero-banner-split.reversed {
     direction: ltr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner-split {
+    display: flex !important;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero-banner-split > div:first-child {
+    min-height: 260px;
+  }
+
+  .hero-banner-split > div:not(:first-child) {
+    width: 100%;
+    padding-left: var(--af-spacing-5);
+    padding-right: var(--af-spacing-5);
+  }
+
+  .hero-banner-split > div:nth-child(2) {
+    padding-top: var(--af-spacing-8);
+  }
+
+  .hero-banner-split > div:last-child {
+    padding-bottom: var(--af-spacing-8);
+  }
+
+  .hero-banner-split > div:not(:first-child) h1,
+  .af-hero-split__heading {
+    font-size: var(--af-font-size-display-md);
+  }
+
+  .hero-banner-split > div:not(:first-child) a,
+  .af-hero-split__cta {
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .af-hero-split__content {
+    padding: var(--af-spacing-8) var(--af-spacing-5);
+  }
+
+  .af-hero-split__actions {
+    flex-direction: column;
   }
 }
