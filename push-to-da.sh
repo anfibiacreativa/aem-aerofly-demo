@@ -1,6 +1,18 @@
 #!/bin/bash
 # Push Aerofly content to DA (Document Authoring) storage
-# Usage: ./push-to-da.sh <DA_TOKEN>
+# Usage: ./push-to-da.sh <DA_TOKEN> [--skip-media | --media-only]
+#
+# Why it can feel like images are "rewritten" every push
+# -------------------------------------------------------
+# 1. This script POSTs every file in MEDIA_FILES on every run. That overwrites the
+#    same paths on DA each time. DA (or the preview pipeline) may re-transcode or
+#    re-hash assets on ingest, so binaries or URLs can look different even when your
+#    local media/ files did not change.
+# 2. Your HTML still points at paths like /media/foo.png — that does not change
+#    unless you edit the HTML. To avoid touching binaries when you only changed
+#    copy or code, use:  ./push-to-da.sh TOKEN --skip-media
+# 3. If you edit pages inside the DA UI, the editor may normalize <picture>/<img>
+#    markup or asset references — that is separate from this script.
 #
 # Get your token:
 #   1. Go to https://da.live
@@ -15,14 +27,35 @@ ORG="anfibiacreativa"
 REPO="aem-aerofly-demo"
 API="https://admin.da.live/source/${ORG}/${REPO}"
 
-TOKEN="${1:-}"
+SKIP_MEDIA=0
+MEDIA_ONLY=0
+TOKEN=""
+for arg in "$@"; do
+  case "$arg" in
+    --skip-media) SKIP_MEDIA=1 ;;
+    --media-only) MEDIA_ONLY=1 ;;
+    -h|--help)
+      echo "Usage: $0 <DA_BEARER_TOKEN> [--skip-media | --media-only]"
+      echo "  --skip-media   Push HTML/CSS only; do not upload media/ binaries."
+      echo "  --media-only   Upload media/ only (skip pages and support CSS)."
+      exit 0
+      ;;
+    *) TOKEN="$arg" ;;
+  esac
+done
+
 if [ -z "$TOKEN" ]; then
-  echo "Usage: $0 <DA_BEARER_TOKEN>"
+  echo "Usage: $0 <DA_BEARER_TOKEN> [--skip-media | --media-only]"
   echo ""
   echo "Get your token from DA:"
   echo "  1. Sign in at https://da.live"
   echo "  2. Open DevTools > Network > find a request to admin.da.live"
   echo "  3. Copy the Bearer token from the Authorization header"
+  exit 1
+fi
+
+if [ "$SKIP_MEDIA" = "1" ] && [ "$MEDIA_ONLY" = "1" ]; then
+  echo "Error: use only one of --skip-media or --media-only"
   exit 1
 fi
 
@@ -91,13 +124,26 @@ declare -a SUPPORT_FILES=(
   "styles/immersive-v2.css"
 )
 
+if [ "$MEDIA_ONLY" = "1" ]; then
+  PAGES=()
+  SUPPORT_FILES=()
+fi
+if [ "$SKIP_MEDIA" = "1" ]; then
+  MEDIA_FILES=()
+fi
+
 TOTAL=$(( ${#PAGES[@]} + ${#MEDIA_FILES[@]} + ${#SUPPORT_FILES[@]} ))
 SUCCESS=0
 FAIL=0
 
 echo "=========================================="
-echo " Pushing ${TOTAL} pages to DA"
+echo " Pushing ${TOTAL} item(s) to DA"
 echo " Org: ${ORG} / Repo: ${REPO}"
+if [ "$SKIP_MEDIA" = "1" ]; then
+  echo " Mode: --skip-media (binaries in media/ will not be uploaded)"
+elif [ "$MEDIA_ONLY" = "1" ]; then
+  echo " Mode: --media-only"
+fi
 echo "=========================================="
 echo ""
 

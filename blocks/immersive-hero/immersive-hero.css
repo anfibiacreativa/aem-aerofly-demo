@@ -226,7 +226,7 @@
 .af-immersive-hero__stat-value {
   display: block;
   margin-bottom: 0.35rem;
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-size: clamp(1.4rem, 3vw, 6.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;

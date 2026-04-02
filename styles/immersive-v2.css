@@ -257,6 +257,10 @@ body:has(main.immersive-v2) .af-footer__bottom-text {
   margin-inline-end: 0;
 }
 
+[dir="rtl"] .af-immersive-quote__quote {
+  direction: rtl;
+}
+
 /* ═══════════════════════════════════════════════
    Reduced motion
    ═══════════════════════════════════════════════ */

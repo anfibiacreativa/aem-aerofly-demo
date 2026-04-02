@@ -1,0 +1,109 @@
+.immersive-quote-wrapper {
+  max-width: none !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+.immersive-quote {
+  position: relative;
+  background: var(--immersive-bg, #050507);
+  padding: 0;
+}
+
+.af-immersive-quote__shell {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.95s var(--immersive-ease, cubic-bezier(0.16, 1, 0.3, 1)),
+    transform 1.05s var(--immersive-ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.af-immersive-quote__shell.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Full-bleed 16:9 cinematic frame */
+.af-immersive-quote__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0a0a0c;
+}
+
+.af-immersive-quote__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 7, 0.05) 0%,
+    rgba(5, 5, 7, 0.35) 55%,
+    rgba(5, 5, 7, 0.92) 100%
+  );
+}
+
+.af-immersive-quote__frame picture,
+.af-immersive-quote__frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.af-immersive-quote__quote {
+  position: relative;
+  z-index: 2;
+  max-width: min(920px, calc(100vw - 3rem));
+  margin: -4.5rem auto 0;
+  padding: 0 1.5rem 4rem;
+  border: none;
+  font-family: inherit;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: rgba(240, 240, 242, 0.88);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.af-immersive-quote__quote::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin: 0 auto 1.25rem;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--immersive-accent, #3b82f6),
+    var(--immersive-purple, #a855f7)
+  );
+}
+
+[dir="rtl"] .af-immersive-quote__quote {
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .af-immersive-quote__quote {
+    margin-top: -3rem;
+    padding: 0 1.25rem 3rem;
+    font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .af-immersive-quote__shell {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

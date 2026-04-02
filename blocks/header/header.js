@@ -1,5 +1,20 @@
 import { getMetadata } from '../../scripts/aem.js';
 
+/** Shown when /nav.plain.html is missing or unreachable (e.g. DA without nav doc). */
+const DEFAULT_NAV_HTML = `
+<div>
+  <p><a href="/"><strong>AEROFLY</strong></a></p>
+  <ul>
+    <li><a href="/men">Men</a></li>
+    <li><a href="/women">Women</a></li>
+    <li><a href="/running">Running</a></li>
+    <li><a href="/training">Training</a></li>
+    <li><a href="/collection">Collection</a></li>
+    <li><a href="/sale">Sale</a></li>
+  </ul>
+</div>
+`.trim();
+
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
@@ -30,28 +45,16 @@ function toggleMenu(nav, forceExpanded = null) {
   }
 }
 
-export default async function decorate(block) {
-  // Fetch nav content from DA fragment
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-
-  const resp = await fetch(`${navPath}.plain.html`);
-  if (!resp.ok) return;
-
-  const html = await resp.text();
-
-  // Build nav element
+function buildNavDom(block, html) {
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  nav.innerHTML = html;
+  nav.innerHTML = html.trim();
 
-  // Decorate as Aerofly navigation
   block.classList.add('af-nav', 'af-nav--dark');
 
   const inner = document.createElement('div');
   inner.className = 'af-nav__inner';
 
-  // Logo — first <strong> in the fragment
   const strong = nav.querySelector('strong');
   if (strong) {
     const logo = document.createElement('a');
@@ -61,7 +64,6 @@ export default async function decorate(block) {
     inner.appendChild(logo);
   }
 
-  // Nav links — all <a> except the brand link
   const allLinks = [...nav.querySelectorAll('a')];
   const navLinks = allLinks.filter((a) => a.closest('ul') || !a.querySelector('strong'));
   if (navLinks.length) {
@@ -80,7 +82,6 @@ export default async function decorate(block) {
     inner.appendChild(navEl);
   }
 
-  // Utility buttons (search + cart)
   const utils = document.createElement('div');
   utils.className = 'af-nav__utils';
 
@@ -97,7 +98,6 @@ export default async function decorate(block) {
   cartBtn.setAttribute('aria-label', 'Cart');
   utils.appendChild(cartBtn);
 
-  // Hamburger menu (mobile)
   const hamburger = document.createElement('div');
   hamburger.className = 'nav-hamburger';
   const hamburgerBtn = document.createElement('button');
@@ -108,12 +108,10 @@ export default async function decorate(block) {
 
   inner.appendChild(utils);
 
-  // Assemble
   nav.innerHTML = '';
   nav.setAttribute('aria-expanded', 'false');
   nav.appendChild(inner);
 
-  // Toggle mobile menu
   hamburgerBtn.addEventListener('click', () => toggleMenu(nav));
   isDesktop.addEventListener('change', () => {
     if (isDesktop.matches) toggleMenu(nav, false);
@@ -122,7 +120,6 @@ export default async function decorate(block) {
   block.innerHTML = '';
   block.appendChild(nav);
 
-  // Darken nav background on scroll (used by immersive pages)
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
       block.classList.add('scrolled');
@@ -130,4 +127,25 @@ export default async function decorate(block) {
       block.classList.remove('scrolled');
     }
   }, { passive: true });
+}
+
+export default async function decorate(block) {
+  const navMeta = getMetadata('nav');
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+
+  let html = '';
+  try {
+    const resp = await fetch(`${navPath}.plain.html`);
+    if (resp.ok) {
+      html = await resp.text();
+    }
+  } catch {
+    /* network / CORS */
+  }
+
+  if (!html || !html.trim()) {
+    html = DEFAULT_NAV_HTML;
+  }
+
+  buildNavDom(block, html);
 }

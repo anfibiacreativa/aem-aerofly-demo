@@ -1,5 +1,34 @@
 import { getMetadata } from '../../scripts/aem.js';
 
+/** Shown when /footer.plain.html is missing or unreachable. */
+const DEFAULT_FOOTER_HTML = `
+<div>
+  <p><strong>Shop</strong></p>
+  <p><a href="/men">Men</a></p>
+  <p><a href="/women">Women</a></p>
+  <p><a href="/running">Running</a></p>
+  <p><a href="/training">Training</a></p>
+  <p><a href="/sale">Sale</a></p>
+</div>
+<div>
+  <p><strong>Company</strong></p>
+  <p><a href="/about">About Us</a></p>
+  <p><a href="/sustainability">Sustainability</a></p>
+  <p><a href="/careers">Careers</a></p>
+  <p><a href="/stores">Store Locator</a></p>
+</div>
+<div>
+  <p><strong>Help</strong></p>
+  <p><a href="/help">FAQs</a></p>
+  <p><a href="/size-guide">Size Guide</a></p>
+  <p><a href="/returns">Returns &amp; Exchanges</a></p>
+  <p><a href="/newsletter">Newsletter</a></p>
+</div>
+<div>
+  <p>© 2026 Aerofly. All rights reserved.</p>
+</div>
+`.trim();
+
 /**
  * Decorate footer rows (column groups + copyright)
  * @param {Element} container Element with rows of footer content
@@ -20,7 +49,6 @@ function decorateFooterContent(container, block) {
   rows.forEach((row) => {
     const text = row.textContent.trim();
 
-    // Copyright row
     if (text.startsWith('©') || text.startsWith('(c)')) {
       copyrightText = text;
       return;
@@ -55,7 +83,6 @@ function decorateFooterContent(container, block) {
   main.appendChild(columns);
   block.appendChild(main);
 
-  // Bottom bar
   if (copyrightText) {
     const bottom = document.createElement('div');
     bottom.className = 'af-footer__bottom';
@@ -68,18 +95,27 @@ function decorateFooterContent(container, block) {
 }
 
 export default async function decorate(block) {
-  // Fetch footer content from DA fragment
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta
     ? new URL(footerMeta, window.location).pathname
     : '/footer';
 
-  const resp = await fetch(`${footerPath}.plain.html`);
-  if (!resp.ok) return;
+  let html = '';
+  try {
+    const resp = await fetch(`${footerPath}.plain.html`);
+    if (resp.ok) {
+      html = await resp.text();
+    }
+  } catch {
+    /* network / CORS */
+  }
 
-  const html = await resp.text();
+  if (!html || !html.trim()) {
+    html = DEFAULT_FOOTER_HTML;
+  }
+
   const fragment = document.createElement('div');
-  fragment.innerHTML = html;
+  fragment.innerHTML = html.trim();
 
   block.innerHTML = '';
   decorateFooterContent(fragment, block);
