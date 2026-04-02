@@ -14,6 +14,10 @@
   --immersive-shell: min(1240px, calc(100vw - 64px));
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background:
     radial-gradient(circle at 18% 12%, rgba(64, 96, 182, 0.28), transparent 28%),

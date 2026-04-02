@@ -17,6 +17,14 @@
   border: 1px solid rgba(173, 196, 255, 0.12);
   background: linear-gradient(180deg, rgba(10, 16, 26, 0.88), rgba(5, 9, 15, 0.96));
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  transform: translateY(56px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.af-immersive-cards__shell.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .af-immersive-cards__heading {
@@ -46,6 +54,22 @@
   border-radius: 22px;
   border: 1px solid rgba(173, 196, 255, 0.12);
   background: rgba(255, 255, 255, 0.028);
+  opacity: 0;
+  transform: translateY(42px) scale(0.96);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+  transition-delay: var(--immersive-delay, 0ms);
+}
+
+.af-immersive-cards__card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.af-immersive-cards__card:hover {
+  border-color: rgba(125, 211, 252, 0.32);
 }
 
 .af-immersive-cards__label {
@@ -71,6 +95,29 @@
   margin: 0;
   color: rgba(228, 235, 247, 0.75);
   line-height: 1.58;
+}
+
+.af-immersive-cards__meter {
+  margin-top: 18px;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+.af-immersive-cards__meter-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #3b82f6, #7dd3fc 70%, rgba(255, 255, 255, 0.88));
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.35);
+  transition: width 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+.af-immersive-cards__card.is-visible .af-immersive-cards__meter-fill {
+  width: var(--immersive-meter-target, 82%);
 }
 
 @media (max-width: 1100px) {

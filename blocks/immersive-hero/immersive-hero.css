@@ -7,10 +7,25 @@
   position: relative;
   padding: 36px 24px 28px;
   color: #f6f8fb;
+  overflow: hidden;
   background:
     radial-gradient(circle at 18% 12%, rgba(64, 96, 182, 0.28), transparent 28%),
     radial-gradient(circle at 82% 14%, rgba(28, 189, 210, 0.12), transparent 30%),
     linear-gradient(180deg, #030508 0%, #080d15 40%, #06080d 100%);
+}
+
+.immersive-hero::before {
+  content: '';
+  position: absolute;
+  width: 840px;
+  height: 840px;
+  left: 50%;
+  top: 10%;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(168, 85, 247, 0.05) 42%, transparent 72%);
+  filter: blur(18px);
+  pointer-events: none;
 }
 
 .af-immersive-hero__shell {
@@ -35,6 +50,8 @@
   flex-direction: column;
   justify-content: center;
   gap: 26px;
+  position: relative;
+  z-index: 1;
 }
 
 .af-immersive-hero__kicker {
@@ -122,6 +139,7 @@
   overflow: hidden;
   border: 1px solid rgba(173, 196, 255, 0.14);
   background: linear-gradient(180deg, rgba(13, 23, 37, 0.35), rgba(6, 10, 17, 0.72));
+  --immersive-parallax: 0px;
 }
 
 .af-immersive-hero__media picture,
@@ -133,6 +151,8 @@
 
 .af-immersive-hero__image {
   object-fit: cover;
+  transform: scale(1.08) translateY(var(--immersive-parallax));
+  transition: transform 220ms linear;
 }
 
 .af-immersive-hero__media::after {
@@ -143,6 +163,19 @@
   background:
     linear-gradient(180deg, rgba(4, 7, 12, 0.04) 0%, rgba(4, 8, 15, 0.52) 100%),
     radial-gradient(circle at 58% 28%, rgba(125, 211, 252, 0.2), transparent 28%);
+}
+
+.af-immersive-hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.32;
+  background-image:
+    linear-gradient(rgba(173, 196, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(173, 196, 255, 0.1) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 0));
 }
 
 .af-immersive-hero__stats {
@@ -163,6 +196,7 @@
   border: 1px solid rgba(186, 216, 255, 0.14);
   background: rgba(5, 11, 19, 0.72);
   backdrop-filter: blur(16px);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .af-immersive-hero__stat-value {
@@ -177,6 +211,36 @@
   color: rgba(239, 245, 255, 0.72);
   font-size: 0.9rem;
   line-height: 1.45;
+}
+
+.af-immersive-reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.af-immersive-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.af-immersive-reveal--delay-1 { transition-delay: 0.12s; }
+.af-immersive-reveal--delay-2 { transition-delay: 0.22s; }
+.af-immersive-reveal--delay-3 { transition-delay: 0.32s; }
+.af-immersive-reveal--delay-4 { transition-delay: 0.42s; }
+.af-immersive-reveal--delay-5 { transition-delay: 0.52s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .af-immersive-hero__image,
+  .af-immersive-reveal,
+  .af-immersive-hero__stat {
+    transition: none;
+    transform: none;
+  }
+
+  .af-immersive-reveal {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1100px) {

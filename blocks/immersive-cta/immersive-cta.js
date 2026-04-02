@@ -1,3 +1,18 @@
+function observeReveal(root) {
+  if (typeof IntersectionObserver === 'undefined') return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      root.classList.add('is-visible');
+      observer.disconnect();
+    });
+  }, {
+    threshold: 0.25,
+  });
+
+  observer.observe(root);
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
   block.innerHTML = '';
@@ -38,4 +53,5 @@ export default function decorate(block) {
   }
 
   block.appendChild(shell);
+  observeReveal(block);
 }

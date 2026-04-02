@@ -9,6 +9,14 @@
   border: 1px solid rgba(77, 196, 243, 0.2);
   background: linear-gradient(135deg, rgba(14, 39, 70, 0.82), rgba(9, 14, 24, 0.98));
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.26);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.immersive-cta.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .af-immersive-cta__shell {
