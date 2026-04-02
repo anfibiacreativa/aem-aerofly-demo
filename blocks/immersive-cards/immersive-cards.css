@@ -1,0 +1,94 @@
+.immersive-cards-wrapper {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+.immersive-cards {
+  padding: 0 24px 28px;
+  background: linear-gradient(180deg, #06080d 0%, #06080d 100%);
+  color: #f6f8fb;
+}
+
+.af-immersive-cards__shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 36px;
+  border-radius: 28px;
+  border: 1px solid rgba(173, 196, 255, 0.12);
+  background: linear-gradient(180deg, rgba(10, 16, 26, 0.88), rgba(5, 9, 15, 0.96));
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.32);
+}
+
+.af-immersive-cards__heading {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  color: #f7f9fc;
+}
+
+.af-immersive-cards__intro {
+  max-width: 46rem;
+  margin: 0 0 24px;
+  color: rgba(228, 235, 247, 0.75);
+  line-height: 1.7;
+}
+
+.af-immersive-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.af-immersive-cards__card {
+  min-height: 168px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(173, 196, 255, 0.12);
+  background: rgba(255, 255, 255, 0.028);
+}
+
+.af-immersive-cards__label {
+  display: block;
+  margin-bottom: 14px;
+  color: rgba(183, 205, 255, 0.7);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.af-immersive-cards__title {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+  line-height: 1.18;
+  color: #f7f9fc;
+}
+
+.af-immersive-cards__body {
+  margin: 0;
+  color: rgba(228, 235, 247, 0.75);
+  line-height: 1.58;
+}
+
+@media (max-width: 1100px) {
+  .af-immersive-cards__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .immersive-cards {
+    padding: 0 16px 20px;
+  }
+
+  .af-immersive-cards__shell {
+    padding: 24px;
+  }
+
+  .af-immersive-cards__grid {
+    grid-template-columns: 1fr;
+  }
+}

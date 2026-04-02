@@ -1,0 +1,75 @@
+.immersive-gallery-wrapper {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+.immersive-gallery {
+  padding: 0 24px 28px;
+  background: linear-gradient(180deg, #06080d 0%, #06080d 100%);
+}
+
+.af-immersive-gallery__shell {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.af-immersive-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.af-immersive-gallery__card {
+  position: relative;
+  min-height: 320px;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(173, 196, 255, 0.14);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.32);
+}
+
+.af-immersive-gallery__card picture,
+.af-immersive-gallery__card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.af-immersive-gallery__card img {
+  object-fit: cover;
+}
+
+.af-immersive-gallery__card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(3, 5, 8, 0.92));
+}
+
+.af-immersive-gallery__caption {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 1;
+  color: rgba(245, 247, 252, 0.92);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 1100px) {
+  .af-immersive-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .immersive-gallery {
+    padding: 0 16px 20px;
+  }
+
+  .af-immersive-gallery__grid {
+    grid-template-columns: 1fr;
+  }
+}

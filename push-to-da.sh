@@ -29,6 +29,7 @@ fi
 # Content HTML files to push (path -> DA path mapping)
 # DA expects: <body><header/><main>...</main><footer/></body>
 declare -a PAGES=(
+  "head.html"
   "nav.html"
   "footer.html"
   "index.html"
@@ -55,9 +56,42 @@ declare -a PAGES=(
   "sustainability/index.html"
   "training/index.html"
   "women/index.html"
+  "airpulse-pro-immersive/index.html"
+  "airpulse-pro-immersive-a/index.html"
+  "airpulse-pro-immersive-a/ja/index.html"
+  "airpulse-pro-immersive-a/sa/index.html"
+  "airpulse-pro-immersive-a-new/index.html"
+  "airpulse-pro-immersive-b/index.html"
+  "airpulse-pro-immersive-c/index.html"
 )
 
-TOTAL=${#PAGES[@]}
+declare -a MEDIA_FILES=(
+  "media/immersive/cinematic_video1.mp4"
+  "media/immersive/cinematic_video2.mp4"
+  "media/immersive/immersive_cinematic1.webp"
+  "media/immersive/immersive_cinematic2.png"
+  "media/immersive/immersive_cinematic3.png"
+  "media/immersive/immersive_cinematic4.png"
+  "media/immersive/immersive_cinematic5.png"
+  "media/immersive/immersive_cinematic6.png"
+  "media/immersive/immersive_cinematic7.png"
+  "media/immersive/immersive_cinematic8.png"
+  "media/immersive/immersive_details1.png"
+  "media/immersive/immersive_details2.png"
+  "media/immersive/immersive_details3.png"
+  "media/immersive/immersive_details4.png"
+  "media/immersive/immersive_details5.png"
+  "media/immersive/immersive_hero1.png"
+  "media/immersive/immersive_hero2.png"
+  "media/immersive/immersive_hero3.png"
+  "media/immersive/immersive_hero4.png"
+)
+
+declare -a SUPPORT_FILES=(
+  "styles/immersive-v2.css"
+)
+
+TOTAL=$(( ${#PAGES[@]} + ${#MEDIA_FILES[@]} + ${#SUPPORT_FILES[@]} ))
 SUCCESS=0
 FAIL=0
 
@@ -113,6 +147,70 @@ ${CONTENT}
     ((SUCCESS++))
   else
     echo "FAIL: ${page} (HTTP ${HTTP_CODE})"
+    ((FAIL++))
+  fi
+done
+
+for support in "${SUPPORT_FILES[@]}"; do
+  FILE_PATH="$support"
+
+  if [ ! -f "$FILE_PATH" ]; then
+    echo "SKIP: $FILE_PATH (not found)"
+    ((FAIL++))
+    continue
+  fi
+
+  DIR_PATH=$(dirname "$support")
+  if [ "$DIR_PATH" != "." ]; then
+    curl -s -o /dev/null -w "" \
+      -X POST "${API}/${DIR_PATH}" \
+      -H "Authorization: Bearer ${TOKEN}" \
+      2>/dev/null || true
+  fi
+
+  MIME_TYPE=$(file --mime-type -b "$FILE_PATH")
+  HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+    -X POST "${API}/${support}" \
+    -H "Authorization: Bearer ${TOKEN}" \
+    -F "data=@${FILE_PATH};type=${MIME_TYPE}")
+
+  if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ] || [ "$HTTP_CODE" = "204" ]; then
+    echo "  OK: ${support} (${HTTP_CODE})"
+    ((SUCCESS++))
+  else
+    echo "FAIL: ${support} (HTTP ${HTTP_CODE})"
+    ((FAIL++))
+  fi
+done
+
+for media in "${MEDIA_FILES[@]}"; do
+  FILE_PATH="$media"
+
+  if [ ! -f "$FILE_PATH" ]; then
+    echo "SKIP: $FILE_PATH (not found)"
+    ((FAIL++))
+    continue
+  fi
+
+  DIR_PATH=$(dirname "$media")
+  if [ "$DIR_PATH" != "." ]; then
+    curl -s -o /dev/null -w "" \
+      -X POST "${API}/${DIR_PATH}" \
+      -H "Authorization: Bearer ${TOKEN}" \
+      2>/dev/null || true
+  fi
+
+  MIME_TYPE=$(file --mime-type -b "$FILE_PATH")
+  HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+    -X POST "${API}/${media}" \
+    -H "Authorization: Bearer ${TOKEN}" \
+    -F "data=@${FILE_PATH};type=${MIME_TYPE}")
+
+  if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ] || [ "$HTTP_CODE" = "204" ]; then
+    echo "  OK: ${media} (${HTTP_CODE})"
+    ((SUCCESS++))
+  else
+    echo "FAIL: ${media} (HTTP ${HTTP_CODE})"
     ((FAIL++))
   fi
 done

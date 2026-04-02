@@ -1,0 +1,76 @@
+.immersive-cta-wrapper {
+  max-width: none !important;
+  padding: 0 24px 40px !important;
+  background: linear-gradient(180deg, #06080d 0%, #06080d 100%);
+}
+
+.immersive-cta {
+  border-radius: 26px;
+  border: 1px solid rgba(77, 196, 243, 0.2);
+  background: linear-gradient(135deg, rgba(14, 39, 70, 0.82), rgba(9, 14, 24, 0.98));
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.26);
+}
+
+.af-immersive-cta__shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 26px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.af-immersive-cta__heading {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  color: #f7f9fc;
+}
+
+.af-immersive-cta__body {
+  margin: 0;
+  color: rgba(239, 245, 255, 0.72);
+  line-height: 1.58;
+}
+
+.af-immersive-cta__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.af-immersive-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.af-immersive-cta__button--primary {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(14, 165, 233, 0.94));
+}
+
+.af-immersive-cta__button--secondary {
+  color: #f6f8fb;
+  border: 1px solid rgba(186, 216, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 767px) {
+  .immersive-cta-wrapper {
+    padding: 0 16px 24px !important;
+  }
+
+  .af-immersive-cta__shell {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
