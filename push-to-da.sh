@@ -66,8 +66,8 @@ declare -a PAGES=(
 )
 
 declare -a MEDIA_FILES=(
-  "media/cinematic_video1.mp4"
-  "media/cinematic_video2.mp4"
+  "media/cinematic-video1.mp4"
+  "media/cinematic-video2.mp4"
   "media/immersive-cinematic1.webp"
   "media/immersive-cinematic2.png"
   "media/immersive-cinematic3.png"
