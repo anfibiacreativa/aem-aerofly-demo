@@ -121,4 +121,13 @@ export default async function decorate(block) {
 
   block.innerHTML = '';
   block.appendChild(nav);
+
+  // Darken nav background on scroll (used by immersive pages)
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      block.classList.add('scrolled');
+    } else {
+      block.classList.remove('scrolled');
+    }
+  }, { passive: true });
 }

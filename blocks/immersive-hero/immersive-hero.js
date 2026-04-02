@@ -68,62 +68,22 @@ function animateMetrics(root) {
         }, index * 150);
       });
     });
-  }, {
-    threshold: 0.45,
-  });
+  }, { threshold: 0.4 });
 
-  observer.observe(root);
+  const statsContainer = root.querySelector('.af-immersive-hero__stats');
+  if (statsContainer) observer.observe(statsContainer);
 }
 
 function enableParallax(block) {
   const media = block.querySelector('.af-immersive-hero__media');
-  const glow = block.querySelector('.af-immersive-hero__glow');
-  if (!media && !glow) return;
+  if (!media) return;
 
   let ticking = false;
 
-  const updateParallax = () => {
-    const rect = block.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
-    const clamped = Math.max(0, Math.min(1, progress));
-
-    if (media) {
-      const shift = (clamped - 0.5) * 36;
-      media.style.setProperty('--immersive-parallax', `${shift.toFixed(2)}px`);
-    }
-
-    if (glow) {
-      const glowShift = window.scrollY * 0.15;
-      glow.style.transform = `translate(-50%, calc(-50% + ${glowShift}px))`;
-    }
-
-    ticking = false;
-  };
-
-  updateParallax();
-
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(updateParallax);
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-}
-
-function enableScrollProgress() {
-  const bar = document.createElement('div');
-  bar.className = 'immersive-scroll-progress';
-  document.body.appendChild(bar);
-
-  let ticking = false;
   const update = () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.width = `${pct}%`;
+    const scrollY = window.scrollY;
+    const shift = scrollY * 0.25;
+    media.style.setProperty('--immersive-parallax', `${shift.toFixed(1)}px`);
     ticking = false;
   };
 
@@ -132,10 +92,32 @@ function enableScrollProgress() {
     ticking = true;
     requestAnimationFrame(update);
   }, { passive: true });
+
+  update();
+}
+
+function enableScrollProgress() {
+  if (document.querySelector('.immersive-scroll-progress')) return;
+
+  const bar = document.createElement('div');
+  bar.className = 'immersive-scroll-progress';
+  document.body.appendChild(bar);
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      bar.style.width = `${pct}%`;
+      ticking = false;
+    });
+  }, { passive: true });
 }
 
 function injectParallaxOrbs() {
-  const main = document.querySelector('main[class*="immersive-v2-"]');
+  const main = document.querySelector('main.immersive-v2');
   if (!main || main.querySelector('.immersive-orb')) return;
 
   for (let i = 1; i <= 3; i += 1) {
@@ -149,16 +131,39 @@ function injectParallaxOrbs() {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      const scrollY = window.scrollY;
-      const orbs = main.querySelectorAll('.immersive-orb');
-      orbs.forEach((orb, idx) => {
+      const { scrollY } = window;
+      main.querySelectorAll('.immersive-orb').forEach((orb, idx) => {
         const speed = 0.03 + idx * 0.015;
-        const direction = idx % 2 === 0 ? 1 : -1;
-        orb.style.transform = `translateY(${scrollY * speed * direction}px)`;
+        const dir = idx % 2 === 0 ? 1 : -1;
+        orb.style.transform = `translateY(${scrollY * speed * dir}px)`;
       });
       ticking = false;
     });
   }, { passive: true });
+}
+
+function markMainAsImmersive() {
+  const main = document.querySelector('main');
+  if (main && !main.classList.contains('immersive-v2')) {
+    main.classList.add('immersive-v2');
+  }
+}
+
+function applyRTL(block) {
+  const path = window.location.pathname;
+  if (path.includes('/sa/') || path.includes('/ar/')) {
+    block.setAttribute('dir', 'rtl');
+    document.documentElement.setAttribute('dir', 'rtl');
+  }
+}
+
+function applyLang() {
+  const path = window.location.pathname;
+  if (path.includes('/ja/')) {
+    document.documentElement.lang = 'ja';
+  } else if (path.includes('/sa/') || path.includes('/ar/')) {
+    document.documentElement.lang = 'ar';
+  }
 }
 
 function triggerHeroReveals(block) {
@@ -166,7 +171,7 @@ function triggerHeroReveals(block) {
     block.querySelectorAll('.af-immersive-reveal').forEach((el) => {
       el.classList.add('is-visible');
     });
-  }, 300);
+  }, 400);
 }
 
 export default function decorate(block) {
@@ -174,50 +179,67 @@ export default function decorate(block) {
   block.innerHTML = '';
   block.classList.add('af-immersive-hero');
 
+  markMainAsImmersive();
+  applyRTL(block);
+  applyLang();
+
+  // Background media — full bleed (video or image)
+  const media = document.createElement('div');
+  media.className = 'af-immersive-hero__media';
+
+  const firstCell = rows[0]?.querySelector('a');
+  const videoUrl = firstCell?.getAttribute('href') || '';
+  const isVideo = /\.(mp4|webm)$/i.test(videoUrl) || videoUrl.includes('video');
+
+  if (isVideo && videoUrl) {
+    block.classList.add('af-immersive-hero--video');
+    const video = document.createElement('video');
+    video.className = 'af-immersive-hero__video';
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.src = videoUrl;
+    media.appendChild(video);
+  } else {
+    const picture = rows[0]?.querySelector('picture');
+    if (picture) {
+      const clonedPicture = picture.cloneNode(true);
+      const image = clonedPicture.querySelector('img');
+      if (image) image.classList.add('af-immersive-hero__image');
+      media.appendChild(clonedPicture);
+    }
+  }
+  block.appendChild(media);
+
+  // Glow
   const glow = document.createElement('div');
   glow.className = 'af-immersive-hero__glow';
   block.appendChild(glow);
 
-  const shell = document.createElement('div');
-  shell.className = 'af-immersive-hero__shell';
-
-  const copy = document.createElement('div');
-  copy.className = 'af-immersive-hero__copy';
-
-  const media = document.createElement('div');
-  media.className = 'af-immersive-hero__media af-immersive-reveal--scale';
-
-  const mediaGrid = document.createElement('div');
-  mediaGrid.className = 'af-immersive-hero__grid';
-  media.appendChild(mediaGrid);
-
-  const picture = rows[0]?.querySelector('picture');
-  if (picture) {
-    const clonedPicture = picture.cloneNode(true);
-    const image = clonedPicture.querySelector('img');
-    if (image) image.classList.add('af-immersive-hero__image');
-    media.appendChild(clonedPicture);
-  }
+  // Content overlay
+  const content = document.createElement('div');
+  content.className = 'af-immersive-hero__content';
 
   const kickerStrong = rows[1]?.querySelector('strong');
   if (kickerStrong) {
     const kicker = document.createElement('span');
     kicker.className = 'af-immersive-hero__kicker af-immersive-reveal';
     kicker.textContent = kickerStrong.textContent.trim();
-    copy.appendChild(kicker);
+    content.appendChild(kicker);
   }
 
   const heading = rows[2]?.querySelector('h1, h2');
   if (heading) {
     heading.className = 'af-immersive-hero__heading af-immersive-reveal af-immersive-reveal--delay-1';
-    copy.appendChild(heading);
+    content.appendChild(heading);
   }
 
   if (rows[3]) {
     const lead = document.createElement('p');
     lead.className = 'af-immersive-hero__lead af-immersive-reveal af-immersive-reveal--delay-2';
     lead.textContent = rows[3].textContent.trim();
-    copy.appendChild(lead);
+    content.appendChild(lead);
   }
 
   const actionsRow = rows.find((row, index) => index >= 4 && row.querySelector('a'));
@@ -230,9 +252,12 @@ export default function decorate(block) {
       actions.appendChild(link);
     });
 
-    copy.appendChild(actions);
+    content.appendChild(actions);
   }
 
+  block.appendChild(content);
+
+  // Stats strip
   const statRows = rows.filter((row, index) => index > 4 && !row.querySelector('a'));
   if (statRows.length) {
     const stats = document.createElement('div');
@@ -243,7 +268,7 @@ export default function decorate(block) {
       if (cells.length < 2) return;
 
       const stat = document.createElement('article');
-      stat.className = `af-immersive-hero__stat af-immersive-reveal af-immersive-reveal--delay-${Math.min(index + 2, 5)}`;
+      stat.className = `af-immersive-hero__stat af-immersive-reveal af-immersive-reveal--delay-${Math.min(index + 3, 5)}`;
 
       const value = document.createElement('strong');
       value.className = 'af-immersive-hero__stat-value';
@@ -257,12 +282,10 @@ export default function decorate(block) {
       stats.appendChild(stat);
     });
 
-    media.appendChild(stats);
+    block.appendChild(stats);
   }
 
-  shell.append(copy, media);
-  block.appendChild(shell);
-
+  // Scroll indicator
   const scrollIndicator = document.createElement('div');
   scrollIndicator.className = 'af-immersive-hero__scroll';
   const scrollLine = document.createElement('div');
@@ -271,10 +294,35 @@ export default function decorate(block) {
   scrollIndicator.appendChild(document.createTextNode('Scroll'));
   block.appendChild(scrollIndicator);
 
-  observeReveal(block);
+  // Play/pause control for video heroes
+  if (isVideo) {
+    const ctrl = document.createElement('button');
+    ctrl.className = 'af-immersive-hero__video-ctrl';
+    ctrl.type = 'button';
+    ctrl.setAttribute('aria-label', 'Pause video');
+    ctrl.innerHTML = `<svg class="af-immersive-hero__icon af-immersive-hero__icon--pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg><svg class="af-immersive-hero__icon af-immersive-hero__icon--play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+
+    ctrl.addEventListener('click', () => {
+      const vid = block.querySelector('.af-immersive-hero__video');
+      if (!vid) return;
+      if (vid.paused) {
+        vid.play();
+        ctrl.classList.remove('is-paused');
+        ctrl.setAttribute('aria-label', 'Pause video');
+      } else {
+        vid.pause();
+        ctrl.classList.add('is-paused');
+        ctrl.setAttribute('aria-label', 'Play video');
+      }
+    });
+
+    block.appendChild(ctrl);
+  }
+
+  // Activate effects
   triggerHeroReveals(block);
   animateMetrics(block);
-  enableParallax(block);
+  if (!isVideo) enableParallax(block);
   enableScrollProgress();
   injectParallaxOrbs();
 }
