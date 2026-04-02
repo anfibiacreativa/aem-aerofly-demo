@@ -117,13 +117,12 @@ function enableScrollProgress() {
 }
 
 function injectParallaxOrbs() {
-  const main = document.querySelector('main.immersive-v2');
-  if (!main || main.querySelector('.immersive-orb')) return;
+  if (document.querySelector('.immersive-orb')) return;
 
   for (let i = 1; i <= 3; i += 1) {
     const orb = document.createElement('div');
     orb.className = `immersive-orb immersive-orb--${i}`;
-    main.appendChild(orb);
+    document.body.appendChild(orb);
   }
 
   let ticking = false;
@@ -132,7 +131,7 @@ function injectParallaxOrbs() {
     ticking = true;
     requestAnimationFrame(() => {
       const { scrollY } = window;
-      main.querySelectorAll('.immersive-orb').forEach((orb, idx) => {
+      document.querySelectorAll('.immersive-orb').forEach((orb, idx) => {
         const speed = 0.03 + idx * 0.015;
         const dir = idx % 2 === 0 ? 1 : -1;
         orb.style.transform = `translateY(${scrollY * speed * dir}px)`;

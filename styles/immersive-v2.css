@@ -32,7 +32,7 @@ main.immersive-v2 {
   background: var(--immersive-bg);
 }
 
-main.immersive-v2 > div {
+main.immersive-v2 > .section {
   position: relative;
 }
 
@@ -124,7 +124,7 @@ main.immersive-v2::before {
 
 /* ── Section dividers ── */
 
-main.immersive-v2 > div + div::before {
+main.immersive-v2 > .section + .section::before {
   content: '';
   display: block;
   height: 1px;
