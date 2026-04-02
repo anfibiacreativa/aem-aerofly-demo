@@ -4,89 +4,73 @@
   width: 100%;
 }
 
-/* ── Full-bleed hero with content overlaid on image ── */
+/* ── Full-bleed hero — image fills viewport, content overlaid at bottom ── */
 .immersive-hero {
   position: relative !important;
+  width: 100%;
   min-height: 100vh;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: flex-end;
-  color: var(--immersive-text, #f0f0f2);
   overflow: hidden;
 }
 
-/* Background image — fills entire hero, absolutely positioned behind content */
+/* Background media — absolute, fills hero completely */
 .af-immersive-hero__media {
   position: absolute !important;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
-  --immersive-parallax: 0px;
+}
+
+.af-immersive-hero__media img {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
 }
 
 .af-immersive-hero__media picture {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: block;
 }
 
-.af-immersive-hero__image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.1) translateY(var(--immersive-parallax));
-  transition: transform 80ms linear;
-}
-
-/* Gradient overlays for text legibility */
+/* Gradient overlay for text legibility */
 .af-immersive-hero__media::after {
   content: '';
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg,
-      rgba(5, 5, 7, 0.3) 0%,
-      rgba(5, 5, 7, 0.05) 30%,
-      rgba(5, 5, 7, 0.35) 55%,
-      rgba(5, 5, 7, 0.88) 100%
-    );
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 1;
-}
-
-/* Glow behind content area — must not affect layout */
-.af-immersive-hero__glow {
-  position: absolute !important;
-  width: 900px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse,
-    rgba(59, 130, 246, 0.08) 0%,
-    rgba(168, 85, 247, 0.04) 40%,
-    transparent 70%
+  background: linear-gradient(180deg,
+    rgba(5, 5, 7, 0.25) 0%,
+    rgba(5, 5, 7, 0.05) 30%,
+    rgba(5, 5, 7, 0.3) 55%,
+    rgba(5, 5, 7, 0.88) 100%
   );
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-  animation: af-hero-pulse 8s ease-in-out infinite;
+}
+
+/* Content — absolutely positioned at the bottom of the hero */
+.af-immersive-hero__body {
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 2;
+  padding: 0 2.5rem 2.5rem;
 }
 
-@keyframes af-hero-pulse {
-  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
-  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-}
-
-/* Content overlaid at bottom of hero */
 .af-immersive-hero__content {
-  position: relative;
-  z-index: 3;
   max-width: 1200px;
-  width: 100%;
   margin: 0 auto;
-  padding: 0 2.5rem 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -126,7 +110,7 @@
   50% { opacity: 0.3; }
 }
 
-/* Heading — gradient text */
+/* Heading */
 .af-immersive-hero__heading {
   margin: 0;
   font-size: clamp(2.8rem, 7vw, 6rem);
@@ -138,7 +122,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  max-width: 14ch;
 }
 
 .af-immersive-hero__heading em,
@@ -150,7 +133,7 @@
   background-clip: text;
 }
 
-/* Lead paragraph */
+/* Lead */
 .af-immersive-hero__lead {
   max-width: 520px;
   margin: 0;
@@ -222,14 +205,10 @@
   transform: translateY(-2px);
 }
 
-/* Stats bar — glassmorphic strip at very bottom */
+/* Stats strip */
 .af-immersive-hero__stats {
-  position: relative;
-  z-index: 3;
   max-width: 1200px;
-  width: 100%;
-  margin: 1.5rem auto 0;
-  padding: 0 2.5rem 2.5rem;
+  margin: 1rem auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
@@ -282,15 +261,16 @@
   font-weight: 400;
 }
 
-/* ── Video background variant ── */
+/* ── Video background ── */
 
 .af-immersive-hero__video {
-  position: absolute;
-  inset: 0;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .af-immersive-hero__video-ctrl {
@@ -319,24 +299,11 @@
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-.af-immersive-hero__icon {
-  width: 18px;
-  height: 18px;
-}
+.af-immersive-hero__icon { width: 18px; height: 18px; }
+.af-immersive-hero__icon--play { display: none; }
+.af-immersive-hero__video-ctrl.is-paused .af-immersive-hero__icon--pause { display: none; }
+.af-immersive-hero__video-ctrl.is-paused .af-immersive-hero__icon--play { display: block; }
 
-.af-immersive-hero__icon--play {
-  display: none;
-}
-
-.af-immersive-hero__video-ctrl.is-paused .af-immersive-hero__icon--pause {
-  display: none;
-}
-
-.af-immersive-hero__video-ctrl.is-paused .af-immersive-hero__icon--play {
-  display: block;
-}
-
-/* When video hero, move scroll indicator left to avoid overlapping play/pause */
 .af-immersive-hero--video .af-immersive-hero__scroll {
   right: auto;
   left: 2.5rem;
@@ -377,7 +344,7 @@
   100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* Reveal animation */
+/* ── Reveal animation ── */
 .af-immersive-reveal {
   opacity: 0;
   transform: translateY(50px);
@@ -395,80 +362,29 @@
 .af-immersive-reveal--delay-4 { transition-delay: 0.42s; }
 .af-immersive-reveal--delay-5 { transition-delay: 0.52s; }
 
-/* ── RTL support ── */
-[dir="rtl"] .af-immersive-hero__content,
-[dir="rtl"] .af-immersive-hero__stats {
-  direction: rtl;
-  text-align: right;
-}
-
-[dir="rtl"] .af-immersive-hero__actions {
-  justify-content: flex-start;
-}
-
-[dir="rtl"] .af-immersive-hero__scroll {
-  right: auto;
-  left: 2.5rem;
-}
-
-[dir="rtl"] .af-immersive-hero__video-ctrl {
-  right: auto;
-  left: 2.5rem;
-}
-
-[dir="rtl"] .af-immersive-hero--video .af-immersive-hero__scroll {
-  left: auto;
-  right: 2.5rem;
-}
+/* ── RTL ── */
+[dir="rtl"] .af-immersive-hero__body { text-align: right; }
+[dir="rtl"] .af-immersive-hero__scroll { right: auto; left: 2.5rem; }
+[dir="rtl"] .af-immersive-hero__video-ctrl { right: auto; left: 2.5rem; }
+[dir="rtl"] .af-immersive-hero--video .af-immersive-hero__scroll { left: auto; right: 2.5rem; }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .af-immersive-hero__image {
-    transition: none;
-    transform: none;
-  }
-
-  .af-immersive-hero__glow {
-    animation: none;
-  }
-
-  .af-immersive-hero__scroll,
-  .af-immersive-hero__scroll-line {
-    animation: none;
-  }
-
-  .af-immersive-reveal {
-    transition: none;
-    transform: none;
-    opacity: 1;
-  }
+  .af-immersive-reveal { transition: none; transform: none; opacity: 1; }
+  .af-immersive-hero__scroll, .af-immersive-hero__scroll-line { animation: none; }
 }
 
 /* ── Responsive ── */
-@media (max-width: 1100px) {
-  .af-immersive-hero__stats {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media (max-width: 767px) {
-  .immersive-hero {
-    min-height: 100svh;
-  }
+  .immersive-hero { min-height: 100svh; }
 
-  .af-immersive-hero__content {
-    padding: 0 1.25rem 1.5rem;
-    gap: 1rem;
-  }
-
-  .af-immersive-hero__heading {
-    max-width: none;
-  }
+  .af-immersive-hero__body { padding: 0 1.25rem 1.5rem; }
+  .af-immersive-hero__content { gap: 1rem; }
 
   .af-immersive-hero__stats {
-    padding: 1rem 1.25rem 1.5rem;
     grid-template-columns: 1fr;
     gap: 0.5rem;
+    padding: 0 1.25rem;
   }
 
   .af-immersive-hero__stat {
@@ -478,38 +394,12 @@
     gap: 0.75rem;
   }
 
-  .af-immersive-hero__stat-value {
-    margin-bottom: 0;
-    font-size: 1.3rem;
-    white-space: nowrap;
-  }
+  .af-immersive-hero__stat-value { margin-bottom: 0; font-size: 1.3rem; white-space: nowrap; }
+  .af-immersive-hero__stat-label { font-size: 0.78rem; }
 
-  .af-immersive-hero__stat-label {
-    font-size: 0.78rem;
-  }
+  .af-immersive-hero__scroll { display: none; }
+  .af-immersive-hero__video-ctrl { bottom: 1.25rem; right: 1.25rem; width: 38px; height: 38px; }
 
-  .af-immersive-hero__scroll {
-    display: none;
-  }
-
-  .af-immersive-hero__glow {
-    width: 400px;
-    height: 300px;
-  }
-
-  .af-immersive-hero__video-ctrl {
-    bottom: 1.25rem;
-    right: 1.25rem;
-    width: 38px;
-    height: 38px;
-  }
-
-  .af-immersive-hero__actions {
-    flex-direction: column;
-  }
-
-  .af-immersive-hero__button {
-    width: 100%;
-    justify-content: center;
-  }
+  .af-immersive-hero__actions { flex-direction: column; }
+  .af-immersive-hero__button { width: 100%; justify-content: center; }
 }

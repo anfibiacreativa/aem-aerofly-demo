@@ -40,7 +40,7 @@ function buildHeroBlock(main) {
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     // Skip if already in a hero block variant
-    const heroSelectors = '.hero, .hero-banner, .hero-banner-split, .hero-banner-video';
+    const heroSelectors = '.hero, .hero-banner, .hero-banner-split, .hero-banner-video, [class*="hero"]';
     if (h1.closest(heroSelectors) || picture.closest(heroSelectors)) {
       return;
     }

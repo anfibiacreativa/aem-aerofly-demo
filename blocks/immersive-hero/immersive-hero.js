@@ -81,9 +81,8 @@ function enableParallax(block) {
   let ticking = false;
 
   const update = () => {
-    const scrollY = window.scrollY;
-    const shift = scrollY * 0.25;
-    media.style.setProperty('--immersive-parallax', `${shift.toFixed(1)}px`);
+    const shift = window.scrollY * 0.25;
+    media.style.transform = `translateY(${shift.toFixed(1)}px) scale(1.1)`;
     ticking = false;
   };
 
@@ -182,7 +181,7 @@ export default function decorate(block) {
   applyRTL(block);
   applyLang();
 
-  // Background media — full bleed (video or image)
+  // ── 1. Background media — absolute, fills the entire hero ──
   const media = document.createElement('div');
   media.className = 'af-immersive-hero__media';
 
@@ -211,12 +210,13 @@ export default function decorate(block) {
   }
   block.appendChild(media);
 
-  // Glow
-  const glow = document.createElement('div');
-  glow.className = 'af-immersive-hero__glow';
-  block.appendChild(glow);
+  // ── 2. Body — positioned absolute at the bottom of the hero ──
+  //    This wraps both the text content AND the stats strip so
+  //    they sit ON TOP of the image, anchored to the bottom.
+  const body = document.createElement('div');
+  body.className = 'af-immersive-hero__body';
 
-  // Content overlay
+  // Content column (kicker, heading, lead, CTAs)
   const content = document.createElement('div');
   content.className = 'af-immersive-hero__content';
 
@@ -254,7 +254,7 @@ export default function decorate(block) {
     content.appendChild(actions);
   }
 
-  block.appendChild(content);
+  body.appendChild(content);
 
   // Stats strip
   const statRows = rows.filter((row, index) => index > 4 && !row.querySelector('a'));
@@ -281,10 +281,12 @@ export default function decorate(block) {
       stats.appendChild(stat);
     });
 
-    block.appendChild(stats);
+    body.appendChild(stats);
   }
 
-  // Scroll indicator
+  block.appendChild(body);
+
+  // ── 3. Scroll indicator ──
   const scrollIndicator = document.createElement('div');
   scrollIndicator.className = 'af-immersive-hero__scroll';
   const scrollLine = document.createElement('div');
@@ -293,7 +295,7 @@ export default function decorate(block) {
   scrollIndicator.appendChild(document.createTextNode('Scroll'));
   block.appendChild(scrollIndicator);
 
-  // Play/pause control for video heroes
+  // ── 4. Play/pause control for video heroes ──
   if (isVideo) {
     const ctrl = document.createElement('button');
     ctrl.className = 'af-immersive-hero__video-ctrl';
@@ -318,7 +320,7 @@ export default function decorate(block) {
     block.appendChild(ctrl);
   }
 
-  // Activate effects
+  // ── 5. Activate effects ──
   triggerHeroReveals(block);
   animateMetrics(block);
   if (!isVideo) enableParallax(block);
