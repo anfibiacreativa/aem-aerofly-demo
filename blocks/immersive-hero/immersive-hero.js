@@ -9,8 +9,8 @@ function observeReveal(root) {
       observer.unobserve(entry.target);
     });
   }, {
-    threshold: 0.2,
-    rootMargin: '0px 0px -80px 0px',
+    threshold: 0.15,
+    rootMargin: '0px 0px -60px 0px',
   });
 
   revealItems.forEach((item) => observer.observe(item));
@@ -48,7 +48,7 @@ function animateMetrics(root) {
       metrics.forEach(({ element, config }, index) => {
         window.setTimeout(() => {
           const start = performance.now();
-          const duration = 1300;
+          const duration = 2000;
 
           const tick = (now) => {
             const progress = Math.min((now - start) / duration, 1);
@@ -65,7 +65,7 @@ function animateMetrics(root) {
           };
 
           requestAnimationFrame(tick);
-        }, index * 120);
+        }, index * 150);
       });
     });
   }, {
@@ -77,7 +77,8 @@ function animateMetrics(root) {
 
 function enableParallax(block) {
   const media = block.querySelector('.af-immersive-hero__media');
-  if (!media) return;
+  const glow = block.querySelector('.af-immersive-hero__glow');
+  if (!media && !glow) return;
 
   let ticking = false;
 
@@ -86,8 +87,17 @@ function enableParallax(block) {
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
     const clamped = Math.max(0, Math.min(1, progress));
-    const shift = (clamped - 0.5) * 36;
-    media.style.setProperty('--immersive-parallax', `${shift.toFixed(2)}px`);
+
+    if (media) {
+      const shift = (clamped - 0.5) * 36;
+      media.style.setProperty('--immersive-parallax', `${shift.toFixed(2)}px`);
+    }
+
+    if (glow) {
+      const glowShift = window.scrollY * 0.15;
+      glow.style.transform = `translate(-50%, calc(-50% + ${glowShift}px))`;
+    }
+
     ticking = false;
   };
 
@@ -103,10 +113,70 @@ function enableParallax(block) {
   window.addEventListener('resize', onScroll, { passive: true });
 }
 
+function enableScrollProgress() {
+  const bar = document.createElement('div');
+  bar.className = 'immersive-scroll-progress';
+  document.body.appendChild(bar);
+
+  let ticking = false;
+  const update = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${pct}%`;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+}
+
+function injectParallaxOrbs() {
+  const main = document.querySelector('main[class*="immersive-v2-"]');
+  if (!main || main.querySelector('.immersive-orb')) return;
+
+  for (let i = 1; i <= 3; i += 1) {
+    const orb = document.createElement('div');
+    orb.className = `immersive-orb immersive-orb--${i}`;
+    main.appendChild(orb);
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const orbs = main.querySelectorAll('.immersive-orb');
+      orbs.forEach((orb, idx) => {
+        const speed = 0.03 + idx * 0.015;
+        const direction = idx % 2 === 0 ? 1 : -1;
+        orb.style.transform = `translateY(${scrollY * speed * direction}px)`;
+      });
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
+function triggerHeroReveals(block) {
+  window.setTimeout(() => {
+    block.querySelectorAll('.af-immersive-reveal').forEach((el) => {
+      el.classList.add('is-visible');
+    });
+  }, 300);
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
   block.innerHTML = '';
   block.classList.add('af-immersive-hero');
+
+  const glow = document.createElement('div');
+  glow.className = 'af-immersive-hero__glow';
+  block.appendChild(glow);
 
   const shell = document.createElement('div');
   shell.className = 'af-immersive-hero__shell';
@@ -115,7 +185,7 @@ export default function decorate(block) {
   copy.className = 'af-immersive-hero__copy';
 
   const media = document.createElement('div');
-  media.className = 'af-immersive-hero__media';
+  media.className = 'af-immersive-hero__media af-immersive-reveal--scale';
 
   const mediaGrid = document.createElement('div');
   mediaGrid.className = 'af-immersive-hero__grid';
@@ -193,7 +263,18 @@ export default function decorate(block) {
   shell.append(copy, media);
   block.appendChild(shell);
 
+  const scrollIndicator = document.createElement('div');
+  scrollIndicator.className = 'af-immersive-hero__scroll';
+  const scrollLine = document.createElement('div');
+  scrollLine.className = 'af-immersive-hero__scroll-line';
+  scrollIndicator.appendChild(scrollLine);
+  scrollIndicator.appendChild(document.createTextNode('Scroll'));
+  block.appendChild(scrollIndicator);
+
   observeReveal(block);
+  triggerHeroReveals(block);
   animateMetrics(block);
   enableParallax(block);
+  enableScrollProgress();
+  injectParallaxOrbs();
 }

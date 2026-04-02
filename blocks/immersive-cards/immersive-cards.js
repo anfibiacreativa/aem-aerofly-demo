@@ -1,6 +1,6 @@
 function observeReveal(root) {
   if (typeof IntersectionObserver === 'undefined') return;
-  const items = root.querySelectorAll('.af-immersive-cards__reveal');
+  const items = root.querySelectorAll('.af-immersive-cards__card, .af-immersive-cards__shell');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -8,11 +8,24 @@ function observeReveal(root) {
       observer.unobserve(entry.target);
     });
   }, {
-    threshold: 0.18,
-    rootMargin: '0px 0px -80px 0px',
+    threshold: 0.15,
+    rootMargin: '0px 0px -60px 0px',
   });
 
   items.forEach((item) => observer.observe(item));
+}
+
+function enableCardGlow(grid) {
+  grid.addEventListener('mousemove', (e) => {
+    const cards = grid.querySelectorAll('.af-immersive-cards__card');
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
 }
 
 export default function decorate(block) {
@@ -21,17 +34,17 @@ export default function decorate(block) {
   block.classList.add('af-immersive-cards');
 
   const shell = document.createElement('div');
-  shell.className = 'af-immersive-cards__shell af-immersive-cards__reveal';
+  shell.className = 'af-immersive-cards__shell';
 
   const heading = rows[0]?.querySelector('h2, h3');
   if (heading) {
-    heading.className = 'af-immersive-cards__heading af-immersive-cards__reveal';
+    heading.className = 'af-immersive-cards__heading';
     shell.appendChild(heading);
   }
 
   if (rows[1]) {
     const intro = document.createElement('p');
-    intro.className = 'af-immersive-cards__intro af-immersive-cards__reveal';
+    intro.className = 'af-immersive-cards__intro';
     intro.textContent = rows[1].textContent.trim();
     shell.appendChild(intro);
   }
@@ -44,8 +57,8 @@ export default function decorate(block) {
     if (cells.length < 3) return;
 
     const card = document.createElement('article');
-    card.className = 'af-immersive-cards__card af-immersive-cards__reveal';
-    card.style.setProperty('--immersive-delay', `${index * 100}ms`);
+    card.className = 'af-immersive-cards__card';
+    card.style.setProperty('--immersive-delay', `${index * 120}ms`);
 
     const label = document.createElement('em');
     label.className = 'af-immersive-cards__label';
@@ -73,4 +86,5 @@ export default function decorate(block) {
   shell.appendChild(grid);
   block.appendChild(shell);
   observeReveal(block);
+  enableCardGlow(grid);
 }

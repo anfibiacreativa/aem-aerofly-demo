@@ -4,35 +4,35 @@
 }
 
 .immersive-video {
-  padding: 0 24px 28px;
-  background: linear-gradient(180deg, #06080d 0%, #06080d 100%);
+  padding: 0 2rem 2rem;
+  position: relative;
 }
 
 .af-immersive-video__shell {
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 28px;
-  border-radius: 30px;
-  border: 1px solid rgba(173, 196, 255, 0.14);
-  background: rgba(4, 8, 15, 0.86);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.32);
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--immersive-line);
+  background: rgba(20, 20, 24, 1);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
   opacity: 0;
-  transform: translateY(56px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(60px) scale(0.96);
+  transition: opacity 1s var(--immersive-ease), transform 1.2s var(--immersive-ease);
 }
 
 .immersive-video.is-visible .af-immersive-video__shell {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .af-immersive-video__frame {
   position: relative;
   min-height: 620px;
   overflow: hidden;
-  border-radius: 28px;
-  border: 1px solid rgba(173, 196, 255, 0.16);
-  background: #04070d;
+  border-radius: 14px;
+  border: 1px solid var(--immersive-line);
+  background: var(--immersive-bg);
 }
 
 .af-immersive-video__frame video {
@@ -40,12 +40,22 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  transform: scale(1.06);
-  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.08);
+  transition: transform 2s var(--immersive-ease);
 }
 
 .immersive-video.is-visible .af-immersive-video__frame video {
   transform: scale(1);
+}
+
+/* Gradient overlay at bottom for text legibility */
+.af-immersive-video__frame::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 60%;
+  background: linear-gradient(180deg, transparent, rgba(5, 5, 7, 0.85));
+  pointer-events: none;
 }
 
 .af-immersive-video__copy {
@@ -55,8 +65,8 @@
   z-index: 1;
   max-width: 30rem;
   opacity: 0;
-  transform: translateY(42px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  transform: translateY(48px);
+  transition: opacity 1s var(--immersive-ease) 0.3s, transform 1.2s var(--immersive-ease) 0.3s;
 }
 
 .immersive-video.is-visible .af-immersive-video__copy {
@@ -65,29 +75,40 @@
 }
 
 .af-immersive-video__heading {
-  margin: 0 0 12px;
-  font-size: clamp(2.3rem, 5vw, 4.8rem);
-  letter-spacing: -0.05em;
-  line-height: 0.94;
-  color: #f7f9fc;
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--immersive-text);
+  background: linear-gradient(135deg, #f0f0f2 0%, #b0b0cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .af-immersive-video__body {
   margin: 0;
-  color: rgba(239, 245, 255, 0.78);
+  color: rgba(240, 240, 242, 0.7);
   line-height: 1.66;
+  font-weight: 300;
 }
 
 @media (max-width: 767px) {
   .immersive-video {
-    padding: 0 16px 20px;
+    padding: 0 1rem 1.25rem;
   }
 
   .af-immersive-video__shell {
-    padding: 16px;
+    padding: 0.75rem;
   }
 
   .af-immersive-video__frame {
-    min-height: 420px;
+    min-height: 380px;
+  }
+
+  .af-immersive-video__copy {
+    left: 16px;
+    bottom: 16px;
   }
 }
